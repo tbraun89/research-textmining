@@ -14,12 +14,27 @@
  * limitations under the License.
  */
 
-package de.htwdd.fs.textmining.rdf;
+package de.htwdd.fs.textmining;
 
-public class CorporaGenerator {
+import gate.Gate;
 
-    public static void main(String args[]) {
+import java.io.File;
 
+public class ANNI {
+
+    public static void main(String args[]) throws Exception {
+        File gateHome;
+        File pluginsHome;
+
+        System.out.println("Initializing Gate...");
+        Gate.setGateHome(new File("resources/gate"));
+        Gate.init();
+
+        gateHome    = Gate.getGateHome();
+        pluginsHome = new File(gateHome, "plugins");
+
+        System.out.println("Loading ANNIE...");
+        Gate.getCreoleRegister().registerDirectories(new File(pluginsHome, "ANNIE").toURI().toURL());
     }
 
 }
