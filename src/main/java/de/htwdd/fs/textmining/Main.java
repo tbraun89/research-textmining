@@ -17,12 +17,9 @@
 package de.htwdd.fs.textmining;
 
 import gate.Gate;
-import gate.util.GateException;
 import org.apache.log4j.Logger;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 
 public class Main {
 
@@ -49,23 +46,15 @@ public class Main {
 
         try {
             Gate.setGateHome(new File(Main.class.getResource("/gate").toURI()));
-            Gate.init();
-        } catch (URISyntaxException e) {
-            LOGGER.error(e.getMessage());
-        } catch (GateException e) {
-            LOGGER.error(e.getMessage());
+        } catch (IllegalStateException e) {
+            LOGGER.warn(e.getMessage());
         }
+        Gate.init();
 
         gateHome    = Gate.getGateHome();
         pluginsHome = new File(gateHome, "plugins");
 
-        try {
-            Gate.getCreoleRegister().registerDirectories(new File(pluginsHome, "ANNIE").toURI().toURL());
-        } catch (MalformedURLException e) {
-            LOGGER.error(e.getMessage());
-        } catch (GateException e) {
-            LOGGER.error(e.getMessage());
-        }
+        Gate.getCreoleRegister().registerDirectories(new File(pluginsHome, "ANNIE").toURI().toURL());
     }
 
 }
