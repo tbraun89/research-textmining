@@ -27,7 +27,7 @@ public class ANNIETest {
     private static ANNIE annie;
 
     @BeforeClass
-    public static void setup() {
+    public static void setup() throws Exception {
         Main.initGate();
         annie = new ANNIE();
     }

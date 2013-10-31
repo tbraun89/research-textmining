@@ -29,15 +29,21 @@ public class Main {
     private final static Logger LOGGER = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
-        initGate();
+        ANNIE   annie;
 
-        ANNIE annie = new ANNIE();
+        try {
+            initGate();
+            annie = new ANNIE();
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            System.exit(1);
+        }
     }
 
     /**
      * Initialize Gate and load all plugins.
      */
-    protected static void initGate() {
+    protected static void initGate() throws Exception {
         File gateHome;
         File pluginsHome;
 

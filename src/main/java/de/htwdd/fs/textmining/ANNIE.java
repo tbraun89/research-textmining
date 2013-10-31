@@ -20,14 +20,11 @@ import gate.Corpus;
 import gate.Gate;
 import gate.creole.ANNIEConstants;
 import gate.creole.ExecutionException;
-import gate.creole.ResourceInstantiationException;
 import gate.creole.SerialAnalyserController;
-import gate.persist.PersistenceException;
 import gate.util.persistence.PersistenceManager;
 import org.apache.log4j.Logger;
 
 import java.io.File;
-import java.io.IOException;
 
 public class ANNIE {
 
@@ -35,7 +32,7 @@ public class ANNIE {
 
     private SerialAnalyserController annieController;
 
-    public ANNIE() {
+    public ANNIE() throws Exception {
         initANNIE();
     }
 
@@ -55,20 +52,12 @@ public class ANNIE {
     /**
      * Initialize ANNIE and create a corpus pipline.
      */
-    private void initANNIE() {
-        try {
-            annieController = (SerialAnalyserController) PersistenceManager.loadObjectFromFile(
-                    new  File(
-                            new File(Gate.getPluginsHome(), ANNIEConstants.PLUGIN_DIR),
-                            ANNIEConstants.DEFAULT_FILE
-                    )
-            );
-        } catch (PersistenceException e) {
-            LOGGER.error(e.getMessage());
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage());
-        } catch (ResourceInstantiationException e) {
-            LOGGER.error(e.getMessage());
-        }
+    private void initANNIE() throws Exception {
+        annieController = (SerialAnalyserController) PersistenceManager.loadObjectFromFile(
+                new  File(
+                        new File(Gate.getPluginsHome(), ANNIEConstants.PLUGIN_DIR),
+                        ANNIEConstants.DEFAULT_FILE
+                )
+        );
     }
 }
