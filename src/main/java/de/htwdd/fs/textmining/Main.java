@@ -16,24 +16,62 @@
 
 package de.htwdd.fs.textmining;
 
-import gate.Gate;
+import gate.*;
 import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.net.URL;
+import java.util.Iterator;
 
 public class Main {
 
     private final static Logger LOGGER = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
-        ANNIE   annie;
+        ANNIE  annie  = null;
+        Corpus corpus = null;
 
         try {
             initGate();
-            annie = new ANNIE();
+            annie  = new ANNIE();
+            corpus = (Corpus) Factory.createResource("gate.corpora.CorpusImpl");
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             System.exit(1);
+        }
+
+        URL        url    = Main.class.getResource("/test.txt");
+        FeatureMap params = Factory.newFeatureMap();
+
+        params.put("sourceUrl", url);
+        params.put("preserveOriginalContent", new Boolean(true));
+        params.put("collectRepositioningInfo", new Boolean(true));
+
+        Document doc = null;
+
+        try {
+            doc = (Document) Factory.createResource("gate.corpora.DocumentImpl", params);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            System.exit(1);
+        }
+
+        corpus.add(doc);
+        annie.setCorpus(corpus);
+
+        try {
+            annie.execute();
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            System.exit(1);
+        }
+
+        Iterator iterator = corpus.iterator();
+
+        while (iterator.hasNext()) {
+            Document current = (Document) iterator.next();
+
+            // TODO implement analyzer class that creates a structured document for each corpus
         }
     }
 

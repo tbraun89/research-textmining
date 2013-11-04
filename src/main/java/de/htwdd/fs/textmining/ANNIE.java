@@ -50,7 +50,7 @@ public class ANNIE {
     }
 
     /**
-     * Initialize ANNIE and create a corpus pipline.
+     * Initialize ANNIE and create a corpus pipeline.
      */
     private void initANNIE() throws Exception {
         annieController = (SerialAnalyserController) PersistenceManager.loadObjectFromFile(
