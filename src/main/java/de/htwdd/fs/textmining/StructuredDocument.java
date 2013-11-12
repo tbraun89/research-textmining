@@ -16,20 +16,28 @@
 
 package de.htwdd.fs.textmining;
 
-import gate.Annotation;
+import gate.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class StructuredDocument {
 
+    private final Set<String> ANNOTATIONS_REQUIRED = new HashSet<String>();
+
     private String plain;
+    private String annotatedXML;
 
-    private Map<Position, Annotation> annotations;
-
-    public StructuredDocument(String plain) {
+    public StructuredDocument(String plain) throws Exception {
         this.plain  = plain;
-        annotations = new HashMap<Position, Annotation>();
+
+        ANNOTATIONS_REQUIRED.add("Person");
+        ANNOTATIONS_REQUIRED.add("Location");
+        ANNOTATIONS_REQUIRED.add("Date");
+
+        // TODO add all required annotation types
+        //ANNOTATIONS_REQUIRED.add("Person");
+        //ANNOTATIONS_REQUIRED.add("Person");
+        //ANNOTATIONS_REQUIRED.add("Person");
 
         analysePlain();
     }
@@ -38,48 +46,105 @@ public class StructuredDocument {
         return plain;
     }
 
-    public void setPlain(String plain) {
+    public void setPlain(String plain) throws Exception {
         this.plain = plain;
 
         analysePlain();
     }
 
-    public Map<Position, Annotation> getAnnotations() {
-        return annotations;
+    public String getAnnotatedXML() {
+        return this.annotatedXML;
     }
 
-    private void addAnnotation(Position position, Annotation annotation) {
-        annotations.put(position, annotation);
+    private void analysePlain() throws Exception {
+        ANNIE                annie;
+        Corpus               corpus;
+        FeatureMap           params;
+        Document             document;
+        Iterator             iterator;
+        SortedAnnotationList sortedAnnotationList;
+        Set<Annotation>      requiredAnnotations;
+        Annotation           currentAnnotation;
+        StringBuffer         editableContent;
+        long                 insertPositionStart;
+        long                 insertPositionEnd;
+
+        annie  = new ANNIE();
+        corpus = (Corpus) Factory.createResource("gate.corpora.CorpusImpl");
+
+        params = Factory.newFeatureMap();
+        params.put("stringContent", this.plain);
+        params.put("preserveOriginalContent", true);
+        params.put("collectRepositioningInfo", true);
+
+        document = (Document) Factory.createResource("gate.corpora.DocumentImpl", params);
+
+        corpus.add(document);
+        annie.setCorpus(corpus);
+        annie.execute();
+
+        requiredAnnotations  = new HashSet<Annotation>(document.getAnnotations().get(ANNOTATIONS_REQUIRED));
+        iterator             = requiredAnnotations.iterator();
+        sortedAnnotationList = new SortedAnnotationList();
+
+        while (iterator.hasNext()) {
+            sortedAnnotationList.addSortedExclusive((Annotation) iterator.next());
+        }
+
+        editableContent = new StringBuffer(this.plain);
+
+        for (int i = sortedAnnotationList.size() - 1; i >= 0; --i) {
+            currentAnnotation   = sortedAnnotationList.get(i);
+            insertPositionStart = currentAnnotation.getStartNode().getOffset();
+            insertPositionEnd   = currentAnnotation.getEndNode().getOffset();
+
+            // TODO change to xml
+            if (-1 != insertPositionStart && -1 != insertPositionEnd) {
+                editableContent.insert((int) insertPositionEnd,   "</span>");
+                editableContent.insert((int) insertPositionStart, "\" style=\"background:Red;\">");
+                editableContent.insert((int) insertPositionStart, currentAnnotation.getType());
+                editableContent.insert((int) insertPositionStart, "\" title=\"");
+                editableContent.insert((int) insertPositionStart, currentAnnotation.getId().toString());
+                editableContent.insert((int) insertPositionStart, "<span data-gate_id=\"");
+            }
+        }
+
+        annotatedXML = editableContent.toString();
     }
 
-    private void analysePlain() {
-        // TODO
-    }
-
-    private class Position {
-
-        private int x1;
-        private int x2;
-
-        private Position(int x1, int x2) {
-            this.x1 = x1;
-            this.x2 = x2;
+    private class SortedAnnotationList extends Vector<Annotation> {
+        public SortedAnnotationList() {
+            super();
         }
 
-        public int getX1() {
-            return x1;
-        }
+        public boolean addSortedExclusive(Annotation annotation) {
+            Annotation currentAnnotation;
+            long       annotationStart;
+            long       currentStart;
 
-        public void setX1(int x1) {
-            this.x1 = x1;
-        }
+            for (int i = 0; i < this.size(); i++) {
+                currentAnnotation = this.get(i);
 
-        public int getX2() {
-            return x2;
-        }
+                if (annotation.overlaps(currentAnnotation)) {
+                    return false;
+                } // no else
+            }
 
-        public void setX2(int x2) {
-            this.x2 = x2;
+            annotationStart = annotation.getStartNode().getOffset();
+
+            for (int i = 0; i < this.size(); i++) {
+                currentAnnotation = this.get(i);
+                currentStart      = currentAnnotation.getStartNode().getOffset();
+
+                if (annotationStart < currentStart) {
+                    this.insertElementAt(annotation, i);
+
+                    return true;
+                } // no else
+            }
+
+            this.insertElementAt(annotation, this.size());
+            return true;
         }
     }
 
