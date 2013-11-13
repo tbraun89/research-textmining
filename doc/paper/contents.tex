@@ -24,7 +24,6 @@ beim Erzeugen einer neuen Instanz der Corpus als \lstinline{String}
 Die Generierung des \lstinline{StructuredDocument} mit Annotationen im
 Corpus, nachdem die Verarbeitung von ANNIE abgeschlossen wurde hat
 eine Laufzeit von
-
 $$\mathcal{O}(2a \cdot log(a))$$ % TODO Beweis? Korrektur?
 
 wobei $a$ die Anzahl der für die Rückgabe relevanten Annotationen ist.
@@ -34,11 +33,10 @@ wobei $a$ die Anzahl der für die Rückgabe relevanten Annotationen ist.
 
 Herst Patterns werden verwendet um \textit{Hyponyme} für ein gegebenes
 \textit{Hyperonym} zu finden. Dabei gelten folgende Regeln
-
 $$R \subseteq M \times M$$
 $$\forall x, y, z \in M : xRy \land yRz \Rightarrow xRz$$
 $$\forall x \in M : \neg xRx$$
-$$\forall x, y \in M : xRy \Rightarrow \neg yRx$$
+$$\forall x, y \in M : xRy \Rightarrow \neg (yRx)$$
 
 wobei $M$ die Menge aller Wörter der entsprechenden Sprache ist.
 % TODO Quelle hinzufügen (aktuell Wikipedia ~> dort keine Quelle
