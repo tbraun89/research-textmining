@@ -65,6 +65,7 @@ public class Main {
         pluginsHome = new File(gateHome, "plugins");
 
         Gate.getCreoleRegister().registerDirectories(new File(pluginsHome, "ANNIE").toURI().toURL());
+        Gate.getCreoleRegister().registerDirectories(new File(pluginsHome, "WordNet").toURI().toURL());
     }
 
 }
