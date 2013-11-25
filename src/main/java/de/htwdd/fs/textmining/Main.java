@@ -49,7 +49,7 @@ public class Main {
             System.exit(1);
         }
 
-        System.out.println(document.getAnnotatedXML());
+        System.out.println(document.getAnnotatedString());
     }
 
     /**

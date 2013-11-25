@@ -48,7 +48,7 @@ public class StructuredDocument {
         analysePlain();
     }
 
-    public String getAnnotatedXML() {
+    public String getAnnotatedString() {
         return this.annotatedXML;
     }
 
