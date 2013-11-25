@@ -21,7 +21,6 @@ import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -29,16 +28,22 @@ public class Main {
     private final static Logger LOGGER = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
-        URL                url      = null;
-        String             content  = null;
+        URL                url;
+        String             content;
         StructuredDocument document = null;
+        WordNetMatcher     wordNet;
 
         try {
             initGate();
 
+            // TODO remove test file and add dynamic corpus loader
             url      = Main.class.getResource("/test.txt");
             content  = new Scanner(new File(url.getFile())).useDelimiter("\\Z").next();
             document = new StructuredDocument(content);
+
+
+            // TODO implement WordNet checks
+            // wordNet = new WordNetMatcher();
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             System.exit(1);
@@ -65,7 +70,8 @@ public class Main {
         pluginsHome = new File(gateHome, "plugins");
 
         Gate.getCreoleRegister().registerDirectories(new File(pluginsHome, "ANNIE").toURI().toURL());
-        Gate.getCreoleRegister().registerDirectories(new File(pluginsHome, "WordNet").toURI().toURL());
+        // TODO fix WordNet plugin (properties)
+        //Gate.getCreoleRegister().registerDirectories(new File(pluginsHome, "WordNet").toURI().toURL());
     }
 
 }
