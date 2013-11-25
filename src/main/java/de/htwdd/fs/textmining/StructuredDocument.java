@@ -30,14 +30,10 @@ public class StructuredDocument {
     public StructuredDocument(String plain) throws Exception {
         this.plain  = plain;
 
-        ANNOTATIONS_REQUIRED.add("Person");
-        ANNOTATIONS_REQUIRED.add("Location");
-        ANNOTATIONS_REQUIRED.add("Date");
-
-        // TODO add all required annotation types
-        //ANNOTATIONS_REQUIRED.add("Person");
-        //ANNOTATIONS_REQUIRED.add("Person");
-        //ANNOTATIONS_REQUIRED.add("Person");
+        // TODO test if we need more to find all patterns or change something
+        ANNOTATIONS_REQUIRED.add("NNP");
+        ANNOTATIONS_REQUIRED.add("NN");
+        ANNOTATIONS_REQUIRED.add("NNS");
 
         analysePlain();
     }
@@ -61,9 +57,8 @@ public class StructuredDocument {
         Corpus               corpus;
         FeatureMap           params;
         Document             document;
-        Iterator             iterator;
+        Iterator<Annotation> itr;
         SortedAnnotationList sortedAnnotationList;
-        Set<Annotation>      requiredAnnotations;
         Annotation           currentAnnotation;
         StringBuffer         editableContent;
         long                 insertPositionStart;
@@ -83,12 +78,15 @@ public class StructuredDocument {
         annie.setCorpus(corpus);
         annie.execute();
 
-        requiredAnnotations  = new HashSet<Annotation>(document.getAnnotations().get(ANNOTATIONS_REQUIRED));
-        iterator             = requiredAnnotations.iterator();
+        itr                  = document.getAnnotations().iterator();
         sortedAnnotationList = new SortedAnnotationList();
 
-        while (iterator.hasNext()) {
-            sortedAnnotationList.addSortedExclusive((Annotation) iterator.next());
+        while (itr.hasNext()) {
+            Annotation current = itr.next();
+
+            if (ANNOTATIONS_REQUIRED.contains(current.getFeatures().get("category"))) {
+                sortedAnnotationList.addSortedExclusive(current);
+            } // no else
         }
 
         editableContent = new StringBuffer(this.plain);
@@ -98,14 +96,10 @@ public class StructuredDocument {
             insertPositionStart = currentAnnotation.getStartNode().getOffset();
             insertPositionEnd   = currentAnnotation.getEndNode().getOffset();
 
-            // TODO change to xml
             if (-1 != insertPositionStart && -1 != insertPositionEnd) {
-                editableContent.insert((int) insertPositionEnd,   "</span>");
-                editableContent.insert((int) insertPositionStart, "\" style=\"background:Red;\">");
-                editableContent.insert((int) insertPositionStart, currentAnnotation.getType());
-                editableContent.insert((int) insertPositionStart, "\" title=\"");
-                editableContent.insert((int) insertPositionStart, currentAnnotation.getId().toString());
-                editableContent.insert((int) insertPositionStart, "<span data-gate_id=\"");
+                // identify found elements with:   \{\{.*\}\}
+                editableContent.insert((int) insertPositionEnd,   "}}");
+                editableContent.insert((int) insertPositionStart, "{{");
             }
         }
 
