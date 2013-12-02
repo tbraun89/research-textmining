@@ -24,7 +24,7 @@ import java.util.Set;
 
 public abstract class TMPattern {
 
-    protected StructuredDocument           document;
+    protected StructuredDocument       document;
     protected Map<String, Set<String>> elements;
 
     public TMPattern(StructuredDocument document) {

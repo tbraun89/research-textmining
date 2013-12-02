@@ -31,7 +31,6 @@ public class Main {
         URL                url;
         String             content;
         StructuredDocument document = null;
-        WordNetMatcher     wordNet;
 
         try {
             initGate();
@@ -40,10 +39,6 @@ public class Main {
             url      = Main.class.getResource("/test.txt");
             content  = new Scanner(new File(url.getFile())).useDelimiter("\\Z").next();
             document = new StructuredDocument(content);
-
-
-            // TODO implement WordNet checks
-            // wordNet = new WordNetMatcher();
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
             System.exit(1);
