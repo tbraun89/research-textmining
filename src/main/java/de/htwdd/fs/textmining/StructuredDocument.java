@@ -97,13 +97,12 @@ public class StructuredDocument {
             insertPositionEnd   = currentAnnotation.getEndNode().getOffset();
 
             if (-1 != insertPositionStart && -1 != insertPositionEnd) {
-                // identify found elements with:   \{\{.*\}\}
-                editableContent.insert((int) insertPositionEnd,   "}}");
-                editableContent.insert((int) insertPositionStart, "{{");
-            }
+                editableContent.insert((int) insertPositionEnd,   "</np>");
+                editableContent.insert((int) insertPositionStart, "<np>");
+            } // no else
         }
 
-        annotatedXML = editableContent.toString();
+        annotatedXML = editableContent.toString().replaceAll("\\n", "").replaceAll(" +", " ");
     }
 
     private class SortedAnnotationList extends Vector<Annotation> {

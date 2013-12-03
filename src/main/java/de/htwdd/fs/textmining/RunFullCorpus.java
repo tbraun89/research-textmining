@@ -22,9 +22,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class RunFullCorpus {
 
@@ -61,9 +59,10 @@ public class RunFullCorpus {
     }
 
     private void processFile(File file) {
-        String             content;
-        StructuredDocument document;
-        HearstPattern      patternMatcher;
+        String                   content;
+        StructuredDocument       document;
+        HearstPattern            patternMatcher;
+        Map<String, Set<String>> foundHP;
 
         logger.info("Processing: \"" + file.getAbsoluteFile() + "\"");
 
@@ -72,7 +71,21 @@ public class RunFullCorpus {
             document = new StructuredDocument(content);
 
             patternMatcher = new HearstPattern(document);
-            patternMatcher.getElements(); // TODO store elements in global dictionary/database
+            foundHP        = patternMatcher.getElements();
+
+            // FIXME only for testing
+            Iterator<Map.Entry<String, Set<String>>> itr = foundHP.entrySet().iterator();
+            while (itr.hasNext()) {
+                Map.Entry<String, Set<String>> current = itr.next();
+
+                System.out.println(current.getKey() + ":\n[");
+                for (String currentValue : current.getValue()) {
+                    System.out.println("\t" + currentValue + ",");
+                }
+                System.out.println("]");
+            }
+            System.exit(0);
+            // FIXME only for testing
         } catch (Exception e) {
             logger.error("Parsing failed: " + e.getMessage());
         }
