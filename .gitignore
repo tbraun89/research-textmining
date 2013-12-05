@@ -16,3 +16,6 @@
 *.out
 *.pdf
 *.el
+*.snm
+*.toc
+*.nav
