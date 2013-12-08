@@ -18,9 +18,10 @@
   \begin{itemize}
   \item Token sind grundlegende Textbestandteile wie
     \begin{itemize}
-      \item Wörter (Verben, Nomen, Adjektive...)
+      \item Wörter (groß/klein Schreibung)
       \item Zahlen
       \item Satzzeichen
+      \item Sonderzeichen
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -57,6 +58,25 @@
 \begin{frame}
   \frametitle{Part of Speech Tagger}
   \begin{itemize}
-
+  \item Unterteilt die gefunden Wörter in spezielle Klassen (Nomen, Verben, Adjektive...)
+  \item Es existieren verschiedene Tagger mit unterschiedlicher Effizienz (Brown Tagger, Maximum Entropie Tagger, ...)
+  \item Die meisten Tagger nutzen Hidden Markov Modelle
+  \item GATE nutzt den Brill Tagger
   \end{itemize}
 \end{frame}
+
+\begin{frame}
+  \frametitle{Brill Tagger}
+  \begin{itemize}
+  \item Entwickelt von Eric Brill im Jahr 1995
+  \item Algorhytmus benötigt Überwachtes Lernen
+  \item Der Algorhytmus:
+    \begin{itemize}
+    \item Während der Initialisierung werden bekannte Wörter mit dem wahrscheinlichsten Tag versehen 
+    \item Unbekannten Wörtern, werden Tags nach Merkmalen wie Groß-/Kleinschreibung oder Präfixen vergeben
+    \item Danach werden kleine Textteile solange im Zusammenhang auf eine Reihe von Regeln überprüft bis keine Regeln mehr vorhandensind oder ein Schwellenwert erreicht ist
+    \item Dabei gilt immer der letzte gefunde Tag als der korrekte Tag für das Wort, die vorherigen Tags werden ersetzt
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
