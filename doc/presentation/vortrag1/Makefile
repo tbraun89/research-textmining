@@ -7,6 +7,3 @@ clean:
 	rm -f *.nav
 	rm -f *.snm
 	rm -f *.bbl
-
-start:
-	pdf-presenter-console main.pdf -z

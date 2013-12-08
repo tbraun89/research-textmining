@@ -1,10 +1,62 @@
-\section{NP recognition}
-\label{sec:np-recognition}
+\section{NE recognition}
+\label{sec:ne-recognition}
 
 \begin{frame}
-  \frametitle{NP recognition}
+  \frametitle{NE recognition}
 
   \begin{itemize}
-  \item TODO
+  \item Text wird in Tokens unterteilt
+  \item Vergleich mit Gazetteer Listen
+  \item Anwendung eines Sentence Splitters
+  \item POS-Tagger 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tokenizer}
+  
+  \begin{itemize}
+  \item Token sind grundlegende Textbestandteile wie
+    \begin{itemize}
+      \item Wörter (Verben, Nomen, Adjektive...)
+      \item Zahlen
+      \item Satzzeichen
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Gazetteer/Ortslexikon}
+
+  \begin{itemize}
+  \item beinhaltet Informationen zu Orten wie Einwohnerzahlen, Koordinaten etc.
+  \item bietet Basisinformationen zu Begin der Analyse
+  \item Beispiel Dresden:
+    \begin{itemize}
+    \item Bundesland: Sachsen
+    \item Einwohner: 525.105
+    \item Koordinaten: 51Grad 3Min Nord, 13 Grad 44 Min Ost
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Sentence Splitter}
+  \begin{itemize}
+  \item Unterteilt Sätze in Teilinformationen
+  \item nutzt dazu festgelegte Regeln
+  \item Eine Regel für Stadionnamen würde z.B. so aussehen: 
+    \begin{itemize}
+    \item NNP, groß geschrieben, steht links von ``Stadium''
+    \item Treffer: Wembley Stadium, Emirates Stadium
+    \item kein Treffer: White Hart Lane, Stamford Bridge
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Part of Speech Tagger}
+  \begin{itemize}
+
   \end{itemize}
 \end{frame}
