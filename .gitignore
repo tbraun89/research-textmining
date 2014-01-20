@@ -1,10 +1,6 @@
-*.class
+*.pyc
 *.log
-
-# Package Files #
-*.jar
-*.war
-*.ear
+/data
 
 # IDEA Files #
 .idea
