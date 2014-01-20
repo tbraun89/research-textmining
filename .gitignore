@@ -14,7 +14,7 @@
 *.aux
 *.fdb_latexmk
 *.out
-*.pdf
+*.pdf*
 *.el
 *.snm
 *.toc
