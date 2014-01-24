@@ -42,7 +42,6 @@ def hearst_patterns(data_tagged, hearst_dict):
             new_hyponym_list = old_hyponym_list.union(hyponym_list1)
             hearst_dict[hypernym1] = new_hyponym_list
 
-    print data_tagged
     for element in data_tagged:
         if state == State.BACK_TO_NN_B0_HELPER:
             state = State.NN_B0

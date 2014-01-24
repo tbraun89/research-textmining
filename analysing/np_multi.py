@@ -1,7 +1,8 @@
 import os
 import nltk
+import sys
 from nltk import word_tokenize, pos_tag
-from multiprocessing import Process, JoinableQueue, Manager
+from multiprocessing import Process, JoinableQueue, Manager, Value
 from analysing.hearst_fsm import hearst_patterns
 
 
@@ -13,24 +14,34 @@ def corpus_analyser(corpus_path, process_count):
 
     file_queue = JoinableQueue()
     hearst_dict = Manager().dict()
+    word_count = Value('i', 0)
 
     for root, subFolders, files in os.walk(corpus_path):
         for current_file in files:
             if current_file.endswith(".txt"):
                 file_queue.put(os.path.join(root, current_file))
 
-    print "{0} files found.".format(file_queue.qsize())
+    file_count = file_queue.qsize()
+    print "{0} files found.\n".format(file_count)
+
+    sys.stdout.write("\r0.00%\tWord count: 0")
 
     def worker(process_id):
         while not file_queue.empty():
             current_path = file_queue.get()
-            print 'Processing (Process-{1}) "{0}"'.format(current_path, process_id)
 
             with open(current_path, 'r') as current_file:
                 data = ' '.join(current_file.read().replace('\n', ' ').split())
 
-            data_tagged = pos_tag(word_tokenize(data))
+            data_tokenized = word_tokenize(data)
+            word_count.value += len(data_tokenized)
+
+            data_tagged = pos_tag(data_tokenized)
             hearst_patterns(data_tagged, hearst_dict)
+
+            percentage = 100.0 - ((float(file_queue.qsize()) / float(file_count)) * 100.0)
+            sys.stdout.write("\r{0:.2f}%\tWord count: {1}".format(percentage, word_count.value))
+            sys.stdout.flush()
 
             file_queue.task_done()
 
@@ -40,6 +51,7 @@ def corpus_analyser(corpus_path, process_count):
         process.start()
 
     file_queue.join()
+    print "\n"
 
     return hearst_dict
 
