@@ -13,7 +13,7 @@ laut Dokumentation eine sehr gute Erkennunsrate aufweist.
 \section{Hearst Patterns}
 
 Hearst Patterns werden verwendet um \textit{Hyponyme} für ein gegebenes
-\textit{Hyperonym} zu finden. Dabei gelten folgende Regeln
+\textit{Hypernym} zu finden. Dabei gelten folgende Regeln
 $$R \subseteq M \times M$$
 $$\forall x, y, z \in M : xRy \land yRz \Rightarrow xRz$$
 $$\forall x \in M : \neg xRx$$
@@ -58,9 +58,9 @@ um weitere Untersuchungen damit durchführen zu können.
 Für die aktuelle Untersuchung haben wir den \textit{Open American
 National Corpus} (ONAC) verwendet. Dieser besteht aus 11.939.180 
 Wörtern. Mit unserem DFA konnten wir nach der Klassifizierung durch
-NLKT 2.716 Hypernyme mit 21.028 Hyponymen erkennen.
+NLTK 2.716 Hypernyme mit 21.028 Hyponymen erkennen.
 
-An den Gefundenen Daten kann mann erkennen, dass die Qualität der
+An den Gefundenen Daten kann man erkennen, dass die Qualität der
 gefundenen Beziehungen in nur ca. 50\% der Ergebnisse korrekt ist. Es
 werden auch sehr viele Beziehungen gefunden, die zwar den Patterns
 entsprechen, allerdings sprachlich keine Beziehungen sind. Dies zeigt,
