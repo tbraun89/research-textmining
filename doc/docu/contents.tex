@@ -1,0 +1,72 @@
+\section{Gate und ANNIE}
+
+Gate (General Architecture for Text Engineering) ist ein Tool welches
+von der \textit{University of Sheffield} als freie Software entwickelt
+und eine erweiterebare Komponente zum analysieren und verarbeiten von
+Texten in natürlicher Sprache bietet.
+\cite{Cunningham:2000}
+
+ANNIE (A Nearly-New Information Extraction System) ist ein Plugin für
+Gate mit dem es möglich ist einen Corpus zu klassifizieren. Dafür
+besitzt es einen Tokeniser, Sentence splitter, Part-of-speech tagger,
+gezetterer und finite sentence transducter.
+\cite{Cunningham:2002}
+
+Für unsere Implementierung haben wir eine neue Klasse \textbf{ANNIE}
+angelegt, die das Plugin initialisiert. Gate muss dafür bereits in der
+Hauptroutine geladen werden, dabei muss der Pfad zu den Gate Resourcen
+und den Plugins angegeben werden. ANNIE wurde so implementiert, dass
+beim Erzeugen einer neuen Instanz der Corpus als \lstinline{String}
+übergeben werden kann. Dieser wird dann analysiert und kann in dann
+über eine Methode als annotierter Text zurückgegeben werden. 
+% TODO Infos wie der Text annotiert wird hinzufügen 
+
+Die Generierung des \lstinline{StructuredDocument} mit Annotationen im
+Corpus, nachdem die Verarbeitung von ANNIE abgeschlossen wurde hat
+eine Laufzeit von
+$$\mathcal{O}(2a \cdot log(a))$$ % TODO Beweis? Korrektur?
+
+wobei $a$ die Anzahl der für die Rückgabe relevanten Annotationen ist.
+
+
+\section{Hearst Patterns}
+
+Herst Patterns werden verwendet um \textit{Hyponyme} für ein gegebenes
+\textit{Hyperonym} zu finden. Dabei gelten folgende Regeln
+$$R \subseteq M \times M$$
+$$\forall x, y, z \in M : xRy \land yRz \Rightarrow xRz$$
+$$\forall x \in M : \neg xRx$$
+$$\forall x, y \in M : xRy \Rightarrow \neg (yRx)$$
+
+wobei $M$ die Menge aller Wörter der entsprechenden Sprache ist.
+% TODO Quelle hinzufügen (aktuell Wikipedia ~> dort keine Quelle
+% angegben -.-)
+
+Um die entsprechenden Hyponyme in einem Corpus zu finden, werden
+bestimmte Muster in Texten gesucht, die folgende Liste zeigt die
+verwendeten Patterns, dabei ist $NP_{X}$ das Hyponym und $NP_{Y}$ das
+dazugehörige Hyperonym.
+
+\begin{itemize}
+\item $NP_{X}$ and other $NP_{Y}$
+\item $NP_{X}$ or other $NP_{Y}$
+\item $NP_{Y}$ such as $NP_{X}$
+\item Such $NP_{Y}$ as $NP_{X}$
+\item $NP_{Y}$ including $NP_{X}$
+\item $NP_{Y}$, especially $NP_{X}$
+\end{itemize}
+
+So können Hyponyme zu entsprechenden Hyperonymen gefunden werden.
+\cite{Snow:2004}
+
+In unserer Implementierung verwenden wir reguläre Ausdrücke um nach
+den Mustern zu suchen und gleichen dies zunächst mit den Ergebnissen
+von ANNIE ab. So kann zuerst sichergestellt werden, dass es sich um
+zwei gefundene Nomen handelt. Zudem müssen alle beschriebenen Regeln
+eingehalten werden. Ist dies der Fall kann die Anwendung ein neues
+Hyponym und falls noch nicht vorhanden ein neues Hyperonym lernen.
+
+
+\section{WordNet}
+
+% TODO Wordnet zum validieren der Hyperonyme und Hyponyme ~> siehe Snow:2004
