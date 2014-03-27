@@ -1,0 +1,56 @@
+\section{Methoden}
+\subsection{Part of Speach Tagging}
+Als Vorarbeit für die Hearst Patterns ist es nötig den Text per Part of Speach Tagging (PoST) zu klassifizieren.
+Hierbei wird jedem Wort im Text mit Hilfe von statistischen Wahrscheinlichkeiten oder einem Satz von Regeln eine Klasse zugewiesen.
+In der vorliegenden Arbeit wurde hierfür der Brill Tagger genutzt. Dieser besitzt eine Liste von bekannten Worten mit zugehörigen
+Wahrscheinlichkeiten ihrer Klassenzugehörigkeit. In einem ersten Schritt wird allen bekannten Worten nun die Klasse mit der höchsten
+Standartwahrscheinlichkeit zugewiesen und alle unbekannten Worte werden als Nomen klassifiziert.
+
+\subsection{Analyse mit Hilfe von Hearst Patterns}
+
+Zur Analyse der vorliegenden Daten wurde die Methode der \textit{Hearst Patterns} verwendet. 
+Dies ermöglicht es, für ein gegebens \textit{Hypernym} ein oder mehrere \textit{Hyponyme} zu finden. 
+Dabei bestehen für die Hyponymie folgende Regeln wenn M die Menge aller Wörter der 
+entsprechenden Sprache ist und R eine Relation zwischen zwei Wörtern dieser Sprache, wie in Beziehung \ref{eq:relation} dargestellt.
+Diese Relation besitzt folgende Eigenschaften wie in der Ausarbeitung von \cite{bib:Snow2004} beschrieben.
+
+\begin{equation}
+  \label{eq:relation}
+  R \subseteq M \times M
+\end{equation}
+
+\begin{equation}
+  \label{eq:trans}
+  \forall x, y, z \in M : xRy \land yRz \Rightarrow xRz
+\end{equation}
+
+\begin{equation}
+  \label{eq:irref}
+  \forall x \in M : \neg xRx
+\end{equation}
+
+\begin{equation}
+  \label{eq:assym}
+  \forall x, y \in M : xRy \Rightarrow \neg (yRx)
+\end{equation}
+
+Beziehung \ref{eq:trans} beschreibt die Transitivität, ein zu einem Hypernym gehörendes Hyponym, 
+kann also selbst wieder ein Hypernym für ein oder mehrere andere Hyponyme sein.
+Ein Hyponym kann allerdings nicht sein eigenes Hypernym sein wie in Beziehung \ref{eq:irref} gezeigt und ebenfalls darf es
+nicht symmetrisch sein, also nicht sowohl eine Hypernym- als auch Hyponymbeziehung zu einem anderen Wort
+der Menge M besitzen \ref{eq:assym}.
+Um die entsprechenden Hypernyme und Hyponyme im Corpus zu finden, werden vordefinierte Muster, die sogenannten Hearst Patterns
+verwendet. Die folgende Liste zeigt einige der von \cite{bib:Snow2004} empfohlenen Hearst Patterns, die auch in der erstellten
+Implementierung verwendet werden. Hierbei ist $NP_{X}$ das Hyponym und $NP_{Y}$ das dazugehörige Hypernym.
+
+\begin{itemize}
+\item $NP_{X}$ and other $NP_{Y}$
+\item $NP_{X}$ or other $NP_{Y}$
+\item $NP_{Y}$ such as $NP_{X}$
+\item Such $NP_{Y}$ as $NP_{X}$
+\item $NP_{Y}$ including $NP_{X}$
+\item $NP_{Y}$, especially $NP_{X}$
+\end{itemize}
+
+Zur Umsetzung der Hearst Patterns wird in der entwickelten Implementierung\footnote{\href{https://github.com/tbraun89/research-textmining}{Github:
+ https://github.com/tbraun89/research-textmining}} ein deterministischer finiter Automat (DFA) eingesetzt. 
