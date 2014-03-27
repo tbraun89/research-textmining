@@ -15,3 +15,5 @@
 *.snm
 *.toc
 *.nav
+*.bbl
+*.blg
