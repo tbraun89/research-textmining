@@ -2,11 +2,15 @@
 \subsection{Part of Speach Tagging}
 Als Vorarbeit für die Hearst Patterns ist es nötig den Text per Part of Speach Tagging (PoST) zu klassifizieren.
 Hierbei wird jedem Wort im Text mit Hilfe von statistischen Wahrscheinlichkeiten oder einem Satz von Regeln eine Klasse zugewiesen.
-In der vorliegenden Arbeit wurde hierfür der Brill Tagger genutzt. Dieser besitzt eine Liste von bekannten Worten mit zugehörigen
+In der vorliegenden Arbeit wurde hierfür der Brill Tagger genutzt. 
+
+Dieser besitzt eine Liste von bekannten Worten mit zugehörigen
 Wahrscheinlichkeiten ihrer Klassenzugehörigkeit. In einem ersten Schritt wird allen bekannten Worten nun die Klasse mit der höchsten
 Standartwahrscheinlichkeit zugewiesen und alle unbekannten Worte werden an Hand von weiteren Regeln klassifiziert. Beispielsweise werden Großgeschriebene 
 unbekannte Wörter provisorisch als Nomen klassifiziert und Wörter mit dem Suffix \textit{ous} werden als Adjektive eingestuft,
-da die meisten der bekannten Wörter mit diesem Prefix als Adjektive klassifiziert sind. Sobald der Tagger den gesammten Text eingestuft hat, führt er
+da die meisten der bekannten Wörter mit diesem Prefix als Adjektive klassifiziert sind. 
+
+Sobald der Tagger den gesammten Text eingestuft hat, führt er
 mehrere Verbesserungsschritte aus die sich wieder auf die bereits bekannte Wortliste und deren statistischen Gegebenheiten beziehen. So wird z.B. 
 überprüft wie oft ein spezielles Wort provisorisch mit dem $Tag_{A}$ versehen wurde, am Ende der Klassifizierung aber mit $Tag_{B}$ versehen war. 
 Überschreitet dieser Wert eine gewisse Schwelle so wird das Wort mit $Tag_{B}$ versehen. Mit dieser und anderen Regeln erweitert und verbessert sich der
@@ -14,8 +18,8 @@ Brill Tagger kontinuierlich selber und erzielt somit eine sehr geringe Fehlerrat
 
 \subsection{Analyse mit Hilfe von Hearst Patterns}
 
-Zur Analyse der vorliegenden Daten wurde die Methode der \textit{Hearst Patterns} verwendet. 
-Dies ermöglicht es, für ein gegebens \textit{Hyperonym} ein oder mehrere \textit{Hyponyme} zu finden. 
+Zur Analyse der vorliegenden Daten wurden \textit{Hearst Patterns} verwendet. 
+Diese ermöglichen es, für ein gegebens \textit{Hyperonym} ein oder mehrere \textit{Hyponyme} zu finden. 
 Dabei bestehen für die Hyponymie folgende Regeln wenn M die Menge aller Wörter der 
 entsprechenden Sprache ist und R eine Relation zwischen zwei Wörtern dieser Sprache, wie in Beziehung \ref{eq:relation} dargestellt.
 Diese Relation besitzt folgende Eigenschaften wie in der Ausarbeitung von \citename{bib:Snow2004} beschrieben.
@@ -24,27 +28,25 @@ Diese Relation besitzt folgende Eigenschaften wie in der Ausarbeitung von \citen
   \label{eq:relation}
   R \subseteq M \times M
 \end{equation}
-
 \begin{equation}
   \label{eq:trans}
   \forall x, y, z \in M : xRy \land yRz \Rightarrow xRz
 \end{equation}
-
 \begin{equation}
   \label{eq:irref}
   \forall x \in M : \neg xRx
 \end{equation}
-
 \begin{equation}
   \label{eq:assym}
   \forall x, y \in M : xRy \Rightarrow \neg (yRx)
-\end{equation}
-
+\end{equation}%
+%
 Beziehung \ref{eq:trans} beschreibt die Transitivität, ein zu einem Hyperonym gehörendes Hyponym, 
 kann also selbst wieder ein Hyperonym für ein oder mehrere andere Hyponyme sein.
 Ein Hyponym kann allerdings nicht sein eigenes Hyperonym sein wie in Beziehung \ref{eq:irref} gezeigt und ebenfalls darf es
 nicht symmetrisch sein, also nicht sowohl eine Hyperonym- als auch Hyponymbeziehung zu einem anderen Wort
 der Menge M besitzen \ref{eq:assym}.
+
 Um die entsprechenden Hyperonyme und Hyponyme im Corpus zu finden, werden vordefinierte Muster, die sogenannten Hearst Patterns
 verwendet. Die folgende Liste zeigt einige der von \citename{bib:Snow2004} empfohlenen Hearst Patterns, die auch in der erstellten
 Implementierung verwendet werden. Hierbei ist $NP_{X}$ das Hyponym und $NP_{Y}$ das dazugehörige Hyperonym. \cite{bib:Snow2004}
@@ -56,7 +58,7 @@ Implementierung verwendet werden. Hierbei ist $NP_{X}$ das Hyponym und $NP_{Y}$ 
 \item Such $NP_{Y}$ as $NP_{X}$
 \item $NP_{Y}$ including $NP_{X}$
 \item $NP_{Y}$, especially $NP_{X}$
-\end{itemize}
-
+\end{itemize}%
+%
 Zur Umsetzung der Hearst Patterns wird in der entwickelten Implementierung\footnote{\href{https://github.com/tbraun89/research-textmining}{Github:
  https://github.com/tbraun89/research-textmining}} ein deterministischer finiter Automat (DFA) eingesetzt. 
