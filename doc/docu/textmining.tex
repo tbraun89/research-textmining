@@ -25,6 +25,8 @@
 \renewcommand{\abstractnamefont}{\normalfont\bfseries} 
 \renewcommand{\abstracttextfont}{\normalfont\small\itshape} 
 
+\usepackage{cite}
+
 \usepackage{titlesec} 
 \renewcommand\thesection{\Roman{section}} 
 \renewcommand\thesubsection{\Roman{subsection}} 
@@ -61,5 +63,8 @@
     \input{introduction}
     \input{methods}
     \input {results}
+
+    \bibliography{bibs}{}
+    \bibliographystyle{plain}
   \end{multicols}
 \end{document}
