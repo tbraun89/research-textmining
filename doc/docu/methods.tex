@@ -4,7 +4,9 @@ Als Vorarbeit für die Hearst Patterns ist es nötig den Text per Part of Speach
 Hierbei wird jedem Wort im Text mit Hilfe von statistischen Wahrscheinlichkeiten oder einem Satz von Regeln eine Klasse zugewiesen.
 In der vorliegenden Arbeit wurde hierfür der Brill Tagger genutzt. Dieser besitzt eine Liste von bekannten Worten mit zugehörigen
 Wahrscheinlichkeiten ihrer Klassenzugehörigkeit. In einem ersten Schritt wird allen bekannten Worten nun die Klasse mit der höchsten
-Standartwahrscheinlichkeit zugewiesen und alle unbekannten Worte werden als Nomen klassifiziert.
+Standartwahrscheinlichkeit zugewiesen und alle unbekannten Worte werden an Hand von weiteren Regeln klassiefiziert. Großgeschriebene 
+unbekannte Wörter werden provisorisch als Nomen klassifiziert und Wörter mit dem Prefix \textit{ous} werden als Adjektive eingestuft,
+da die meisten der bekannten Wörter mit diesem Prefix als Adjektive klassifiziert sind. 
 
 \subsection{Analyse mit Hilfe von Hearst Patterns}
 
