@@ -82,12 +82,12 @@ Hyponym und $NP_{Y}$ das dazugehörige Hyperonym. \cite{bib:Snow2004}%
 %
 Zur Umsetzung der Hearst Patterns wird in der entwickelten
 Implementierung\footnote{\href{https://github.com/tbraun89/research-textmining}{Github:
- https://github.com/tbraun89/research-textmining}} der in Abbildung
-\ref{fig:dfa} gezeigte, deterministischer finiter Automat (DFA)
-eingesetzt. \textit{C1 word} beschreibt steht dabei für die Wörter
+ https://github.com/tbraun89/research-textmining}}, der in Abbildung
+\ref{fig:dfa} gezeigte, deterministische finite Automat (DFA)
+eingesetzt. \textit{C1 word} steht dabei für die Wörter
 \textbf{like}, \textbf{including}, \textbf{especially}, \textit{C3
   word} für \textbf{and} und \textbf{or} und \textit{C4 word} für
-\textbf{and}, \textbf{or} und \textbf{,}.%
+\textbf{and}, \textbf{or} und \textbf{","}.%
 %
 \begin{figure}[h!] 
   \centering
@@ -96,10 +96,10 @@ eingesetzt. \textit{C1 word} beschreibt steht dabei für die Wörter
   \label{fig:dfa}
 \end{figure}%
 %
-Die analyse durch den DFA erfolgt in einer Laufzeit von
+Die Analyse durch den DFA erfolgt in einer Laufzeit von
 $\mathcal{O}(w)$, wobei \textit{w} die Anzahl der Wörter im
 entsprechenden Korpus ist. Der DFA muss also jedes Wort nur einmal
-bearbeiten. Die beiden akzeptiernenden Zustände \textit{h1} und
+bearbeiten. Die beiden akzeptierenden Zustände \textit{h1} und
 \textit{h2} stoppen bei unserer Implementierung den DFA nicht, sind
 diese erreicht werden die bis hier gefundenen Paare einem Hash
 hinzugefügt der alle Hyponymie Relationen enthält.
