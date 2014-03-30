@@ -1,3 +1,4 @@
 #!/bin/bash
 
+dot -Tpng dot/dfa.gv -o img/dfa.png
 latexmk textmining.tex -f -pdf

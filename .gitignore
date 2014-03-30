@@ -17,3 +17,7 @@
 *.nav
 *.bbl
 *.blg
+*.~
+
+# generated
+doc/docu/img/dfa.png

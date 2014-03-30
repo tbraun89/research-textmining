@@ -1,35 +1,42 @@
-\section{Resultate}
-
+\section{Resultate}%
+%
 Durch die Auswertung mit unserem DFA haben wir aus den 11.939.180 Wörten
 die im OANC enthalten sind, 2.716 Hyperonyme erkennen können, welche
 mit 21.028 Hyponymen in Beziehung stehen. Die Erkennung strikt nach
 den definierten Hearst Patterns erfolgte, sind auch viele fehlerhafte
 Beziehungen enthalten. Da die Analyse nur von Hand durchgeführt werden
 kann, haben wir eine Stichprobe\footnote{Die komplette Tabelle
-  befindet sich im Anhang.} von 100 Paaren untersucht und dabei
-herausgefunden, dass eine Hyponymie nur in ca. 50\% tatsächlich
-stimmt, die andere Hälfte sind fehlerhaft erkannte Beziehungen, somit
-ist diese Methode alleine nicht brauchbar um Hyponymie zwischen
-Wörtern automatisch zu erkennen. Folgend sind einige Auszüge aus den
-untersuchten Ergebnissen aufgeführt.
-
-\begin{itemize}
-\item proteins $\rightarrow$ APC, AlkB, Axin, Bak, Bem1, CD81, LAP1,
-  LAP2, MAN1, ...
-\item places $\rightarrow$ Africa, Amazon, Ankara, California, Indien,
-  \textbf{oh}, \textbf{New}, \textbf{water}, ...
-\item people $\rightarrow$ Charles, Elvis, Ivan Julius,
-  \textbf{pizza}, \textbf{look}, \textbf{that}, \textbf{thinks}, ...
-\end{itemize}
-
+  befindet sich im Anhang.} von 100 Hyperonymen mit 450 Hypoynmen
+untersucht und dabei herausgefunden, dass eine Hyponymie nur in ca.
+56.22\% tatsächlich stimmt, der Rest sind fehlerhaft erkannte
+Beziehungen, somit ist diese Methode alleine nicht brauchbar um
+Hyponymie zwischen Wörtern automatisch zu erkennen. Folgend sind einige
+Auszüge aus den untersuchten Ergebnissen aufgeführt.%
+~\\~\\%
+\begin{tabularx}{\textwidth}{|l|X|}
+  \hline
+  \textbf{Hyperonym} & \textbf{Hyponym} \\
+  \hline
+  proteins & APC, AlkB, Axin, Bak, Bem1, CD81, LAP1,
+  LAP2, MAN1 \\
+  \hline
+  places & Africa, Amazon, Ankara, California, Indien, \textbf{oh},
+  \textbf{New}, \textbf{water} \\
+  \hline
+  people & Charles, Elvis, Ivan Julius,
+  \textbf{pizza}, \textbf{look}, \textbf{that}, \textbf{thinks} \\
+  \hline
+\end{tabularx}%
+~\\~\\~\\%
 Dabei sind die fett markierten Wörter fehlerhaft erkannte Hyponyme,
-die nicht in Beziehung zu ihrem angegebenen Hyperonym stehen.
-
+die nicht in Beziehung zu ihrem angegebenen Hyperonym stehen.%
+\\%
 Um nun bessere Ergebnisse zu erhalten, könnten zum einen die Regeln
 der Hearst Patterns angepasst werden, um so schon die Auswahl der
 Funde weiter zu begrenzen. Zusätlich könnte noch ein weiterer
 Schritt einegführt werden, der die Wahrscheinlichkeit berechnet, dass
 ein Hyponym wirklich in Beziehung zu seinem Hyperonym steht. Dafür
 müsste entweder ein neuer Algorithmus entwickelt werden, oder ein
-passendes Lernverfahren gefunden werden, welches auf dieses Problem
-anwendbar ist.
+passendes Lernverfahren gefunden werden, um die Wahrscheinlichkeit zu
+maximieren, dass die gefunden Paare tatsächlich eine Hyponymie
+Bezeiehung haben.

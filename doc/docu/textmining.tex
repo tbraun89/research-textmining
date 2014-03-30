@@ -27,6 +27,8 @@
 
 \usepackage{harvard}
 
+\usepackage{tabularx}
+
 \usepackage{titlesec} 
 \renewcommand\thesection{\Roman{section}} 
 \renewcommand\thesubsection{\Roman{subsection}} 
@@ -57,12 +59,12 @@
 
   \input{abstract}
 
-  \begin{multicols}{2}
+  %\begin{multicols}{1}
     \input{introduction}
     \input{methods}
     \input {results}
 
     \bibliography{bibs}{}
     \bibliographystyle{agsm}
-  \end{multicols}
+  %\end{multicols}
 \end{document}
