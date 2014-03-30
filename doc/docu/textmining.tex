@@ -27,7 +27,7 @@
 
 \usepackage{harvard}
 
-\usepackage{tabularx}
+\usepackage{longtable}
 
 \usepackage{titlesec} 
 \renewcommand\thesection{\Roman{section}} 
@@ -59,12 +59,13 @@
 
   \input{abstract}
 
-  %\begin{multicols}{1}
-    \input{introduction}
-    \input{methods}
-    \input {results}
+  \input{introduction}
+  \input{methods}
+  \input {results}
 
-    \bibliography{bibs}{}
-    \bibliographystyle{agsm}
-  %\end{multicols}
+  \bibliography{bibs}{}
+  \bibliographystyle{agsm}
+
+  \newpage
+  \input{appendix}
 \end{document}
