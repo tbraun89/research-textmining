@@ -6,6 +6,11 @@
 .idea
 *.iml
 
+/corpus/plain/*
+!/corpus/plain/.gitkeep
+/corpus/tagged/*
+!/corpus/tagged/.gitkeep
+
 # Generated Latex Files #
 *.aux
 *.fdb_latexmk
