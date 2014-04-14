@@ -7,7 +7,6 @@ hearst_dict = dict()
 
 print('Saving dictionary...\n')
 
-
 for key in multi_dict.keys():
     hearst_dict[key] = multi_dict.get(key)
 
@@ -20,5 +19,5 @@ for element in hearst_dict:
     hyper_count += 1
     hypo_count += len(element)
 
-print "Hypernyms:\t\t" + str(hyper_count)
-print "Hyponyms:\t\t" + str(hypo_count)
+print("Hypernyms:\t\t" + str(hyper_count))
+print("Hyponyms:\t\t" + str(hypo_count))
