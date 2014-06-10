@@ -10,6 +10,7 @@
 !/corpus/plain/.gitkeep
 /corpus/tagged/*
 !/corpus/tagged/.gitkeep
+/corpus/*.pickle
 
 # Generated Latex Files #
 *.aux
