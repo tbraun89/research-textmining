@@ -1,7 +1,7 @@
 import pickle
 import random
 
-h_dict = pickle.load(open('data/hearst-OANC.dict', 'rb'))
+h_dict = pickle.load(open('corpus/dict.pickle', 'rb'))
 
 rnd_keys = random.sample(h_dict, 100)
 

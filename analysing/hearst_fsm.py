@@ -1,7 +1,7 @@
 import abc
 
 
-POS_LIST = ['NN', 'NNS', 'NNP', 'NNPS']
+POS_LIST = ['NN', 'NNS', 'NNP', 'NNPS', 'NE']
 
 
 class State():

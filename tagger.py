@@ -1,4 +1,8 @@
-from multiprocessing import Process, JoinableQueue, Manager, Value
+# TODO test with Jython (compile to java)
+# TODO pypy
+# TODO freeze
+
+from multiprocessing import Process, JoinableQueue
 import nltk
 import os
 import sys
@@ -30,16 +34,30 @@ def worker():
         pos_tagged = nltk.pos_tag(tokens)
         pos_tagged = nltk.ne_chunk(pos_tagged)
 
+        tagged_list = []
+
+        for child in pos_tagged:
+            if isinstance(child, nltk.tree.Tree):
+                t_content = ''
+
+                for t_child in child:
+                    t_content += t_child[0] + ' '
+                tagged_list.append((t_content.rstrip(), 'NE'))
+
+            else:
+                tagged_list.append(child)
+
         output_file = os.path.splitext(os.path.basename(input_file))[0] + '.pickle'
         output_file = os.path.join(os.path.dirname(__file__), 'corpus', 'tagged', output_file)
 
-        pickle.dump(pos_tagged, open(output_file, 'wb+'), 2)
+        pickle.dump(tagged_list, open(output_file, 'wb+'), 2)
 
         percentage = 100.0 - ((float(file_list.qsize()) / float(file_count)) * 100.0)
         sys.stdout.write("\rProgress: {0:.2f}%".format(percentage))
         sys.stdout.flush()
 
         file_list.task_done()
+
 
 sys.stdout.write("\rProgress: 0.00%")
 
