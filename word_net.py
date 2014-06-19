@@ -41,4 +41,4 @@ for key in h_dict:
     sys.stdout.write("\rProgress: {0:.2f}%".format(percentage))
     sys.stdout.flush()
 
-pickle.dump(cleaned, open('corpus/cleaned_dict.pickle', 'wb+'), 2)
+pickle.dump(cleaned, open('corpus/dict-0.pickle', 'wb+'), 2)
