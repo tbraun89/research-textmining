@@ -11,6 +11,7 @@ nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk'))
 def search(output_dict, rules_file):
     rules = [rule.split(' | ') for rule in pickle.load(open(rules_file, 'rb'))]
     file_list = JoinableQueue()
+    word_dict = Manager().dict()
 
     for root, subFolders, files in os.walk(os.path.join(os.path.dirname(__file__), 'corpus', 'tagged')):
         for current_file in files:
@@ -30,33 +31,44 @@ def search(output_dict, rules_file):
             return parser.parse(tagged_data)
 
         def get_nltk_word(data):
-            if isinstance(data[0], str):
-                return data[0]
-            else:
+            if isinstance(data[0], nltk.Tree):
                 return data[0][0][0]
+            else:
+                return data[0]
+
+        def add_to_dict(hypernym, hyponym):
+            old_list = word_dict.get(hypernym)
+
+            if not old_list:
+                old_list = [hyponym]
+
+            word_dict[hypernym] = old_list
 
         def apply_rules(data, position):
             for rule in rules:
                 # search right side # FIXME why does this find nothing? oO
                 if rule[0] == 'HYPERNYM':
-                    possible_hypernym = get_nltk_word(data[position])
+                    posible_hypernym = get_nltk_word(data[position])
                     error = False
-                    possible_hyponym = None
+                    posible_hyponym = None
                     word_count = 1
 
-                    for word in rule[1:]:
+                    for word in rule[1:-1]:
                         try:
                             if word != get_nltk_word(data[position + word_count]):
                                 error = True
-                            elif word == 'HYPONYM':
-                                possible_hyponym = data[position + word_count]
 
                             word_count += 1
                         except IndexError:
                             pass
-
-                    if possible_hyponym and not error:
-                        print possible_hypernym + ' ~> ' + possible_hyponym
+                    try:
+                        if not error:
+                            if isinstance(data[position + word_count], nltk.Tree):
+                                if data[position + word_count][1][1] == 'NP':
+                                    print get_nltk_word(data[position + word_count])
+                                    add_to_dict(posible_hypernym[0], get_nltk_word(data[position + word_count]))
+                    except IndexError:
+                        pass
 
                 # search left side
                 else:
@@ -88,6 +100,7 @@ def search(output_dict, rules_file):
     file_list.join()
     print('')
 
+    print word_dict
     # TODO save new dict
 
 
