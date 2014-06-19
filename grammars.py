@@ -1,8 +1,7 @@
-from Tix import INTEGER
-from _ctypes import Py_INCREF
 import os
 import pickle
 import nltk
+import sys
 
 h_dict = pickle.load(open('corpus/cleaned_dict.pickle', 'rb'))
 
@@ -11,6 +10,11 @@ nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk'))
 file_list = []
 
 MAX_SEARCH_RANGE = 5
+THRESHOLD = 2
+
+rules = dict()
+
+sys.stdout.write("\rProgress: 0.00%")
 
 
 def rule_parser(tagged_data):
@@ -76,12 +80,39 @@ def find_pattern(pre_parsed_data, hypernym, hypernym_list):
     return None
 
 
+def add_rule(rule):
+    rts = []
+
+    for element in rule[1]:
+        if element[1] == 'NPs':
+            rts.append(element[0][0])
+        else:
+            rts.append(element[0])
+
+    if rule[0] == 'left':
+        rts[len(rule[1]) - 1] = 'HYPERNYM'
+        rts[0] = 'HYPONYM'
+    else:
+        rts[len(rule[1]) - 1] = 'HYPONYM'
+        rts[0] = 'HYPERNYM'
+
+    rts_str = ' | '.join(rts)
+
+    if rts_str in rules:
+        rules[rts_str] += 1
+    else:
+        rules[rts_str] = 1
+
+
 for root, subFolders, files in os.walk(os.path.join(os.path.dirname(__file__), 'corpus', 'tagged')):
     for current_file in files:
         if current_file.endswith(".pickle"):
             file_list.append(os.path.join(root, current_file))
 
+counter = 0
+
 for input_file in file_list:
+    counter += 1
     tagged_data = pickle.load(open(input_file, 'rb'))
     pre_parsed_data = rule_parser(tagged_data)
 
@@ -89,6 +120,17 @@ for input_file in file_list:
 
     for hypernym in hypernym_positions:
         rule = find_pattern(pre_parsed_data, hypernym, h_dict)
+
         if rule:
-            # TODO store the rules in a usable format and save them to a file with the iteration number
-            print(rule)
+            add_rule(rule)
+
+    percentage = 100.0 - ((float(len(file_list) - counter) / float(len(file_list))) * 100.0)
+    sys.stdout.write("\rProgress: {0:.2f}%".format(percentage))
+    sys.stdout.flush()
+
+# filter the rules and save them
+filtered_rules = {k: v for k, v in rules.items() if v >= THRESHOLD}
+rule_list = sorted(filtered_rules.keys(), key=filtered_rules.get)
+rule_list.reverse()
+
+pickle.dump(rule_list, open('corpus/initial_rules.pickle', 'wb+'), 2)
