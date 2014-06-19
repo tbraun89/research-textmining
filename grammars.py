@@ -124,9 +124,9 @@ def learning(input_dict, output_rules):
     sys.stdout.write("\rProgress: 0.00%")
 
     for root, subFolders, files in os.walk(os.path.join(os.path.dirname(__file__), 'corpus', 'tagged')):
-            for current_file in files:
-                if current_file.endswith(".pickle"):
-                    file_list.put(os.path.join(root, current_file))
+        for current_file in files:
+            if current_file.endswith(".pickle"):
+                file_list.put(os.path.join(root, current_file))
 
     file_count = file_list.qsize()
 

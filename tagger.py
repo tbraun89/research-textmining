@@ -1,7 +1,3 @@
-# TODO test with Jython (compile to java)
-# TODO pypy
-# TODO freeze
-
 from multiprocessing import Process, JoinableQueue
 import nltk
 import os
