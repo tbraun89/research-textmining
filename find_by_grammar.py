@@ -39,9 +39,9 @@ def search(output_dict, rules_file):
             for rule in rules:
                 # search right side # FIXME why does this find nothing? oO
                 if rule[0] == 'HYPERNYM':
-                    posible_hypernym = get_nltk_word(data[position])
+                    possible_hypernym = get_nltk_word(data[position])
                     error = False
-                    posible_hyponym = None
+                    possible_hyponym = None
                     word_count = 1
 
                     for word in rule[1:]:
@@ -49,14 +49,14 @@ def search(output_dict, rules_file):
                             if word != get_nltk_word(data[position + word_count]):
                                 error = True
                             elif word == 'HYPONYM':
-                                posible_hyponym = data[position + word_count]
+                                possible_hyponym = data[position + word_count]
 
                             word_count += 1
                         except IndexError:
                             pass
 
-                    if posible_hyponym and not error:
-                        print posible_hypernym + ' ~> ' + posible_hyponym
+                    if possible_hyponym and not error:
+                        print possible_hypernym + ' ~> ' + possible_hyponym
 
                 # search left side
                 else:
