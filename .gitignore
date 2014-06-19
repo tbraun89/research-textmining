@@ -12,6 +12,9 @@
 !/corpus/tagged/.gitkeep
 /corpus/*.pickle
 
+/learning/*
+!/learning/.gitkeep
+
 # Generated Latex Files #
 *.aux
 *.fdb_latexmk
