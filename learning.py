@@ -9,8 +9,13 @@ learning = True
 
 while learning:
     try:
-        with open(iteration_file) as f:
-            iteration = int(f.readline())
+        try:
+            with open(iteration_file) as f:
+                iteration = int(f.readline())
+        except IOError:
+            with open(iteration_file, 'w+') as f:
+                f.write(str(0))
+            iteration = 0
 
         print('Iteration: ' + str(iteration))
 
