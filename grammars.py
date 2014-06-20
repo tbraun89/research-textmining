@@ -77,16 +77,16 @@ def learning(input_dict, output_rules):
             rts = []
 
             for element in rule[1]:
-                if element[1] == 'NPs':
-                    rts.append(element[0][0])
+                if element[1] == 'NPs' or element[1] == 'NP':
+                    rts.append(element[1])
                 else:
                     rts.append(element[0])
 
             if rule[0] == 'left':
                 rts[len(rule[1]) - 1] = 'HYPERNYM'
-                rts[0] = 'HYPONYM'
+                #rts[0] = 'HYPONYM'
             else:
-                rts[len(rule[1]) - 1] = 'HYPONYM'
+                #rts[len(rule[1]) - 1] = 'HYPONYM'
                 rts[0] = 'HYPERNYM'
 
             rts_str = ' | '.join(rts)
