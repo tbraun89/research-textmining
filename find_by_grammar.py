@@ -51,7 +51,6 @@ def search(output_dict, rules_file):
                     possible_hypernym = get_nltk_word(data[position])
                     error = False
                     word_count = 1
-
                     for word in rule[1:-1]:
                         try:
                             if word != get_nltk_word(data[position + word_count]):
@@ -62,11 +61,21 @@ def search(output_dict, rules_file):
                             pass
                     try:
                         if not error:
-                            if isinstance(data[position + word_count], nltk.Tree):
-                                if data[position + word_count][1][1] == 'NP':
-                                    print get_nltk_word(data[position + word_count])
+                            print data[position + word_count - 2]
+                            print data[position + word_count - 1]
+                            print data[position + word_count]
+                            #print data[position + word_count][1][1]
+                            print (data[position + word_count]).__class__
+                            if isinstance(data[position + word_count], nltk.tree.Tree):
+                                print "WORD"
+                                #print data[position + word_count][1][1]
+                                if data[position + word_count][0][1] == 'NP':
+                                    print "!!!!!!!"
+                                    #print get_nltk_word(data[position + word_count])
+                                    #print data[position + word_count]
                                     add_to_dict(possible_hypernym[0], get_nltk_word(data[position + word_count]))
                     except IndexError:
+                        print "INDEX ERROR"
                         pass
 
                 # search left side
