@@ -46,7 +46,7 @@ def search(output_dict, rules_file):
 
         def apply_rules(data, position):
             for rule in rules:
-                # search right side # FIXME why does this find nothing? oO
+                # search right side
                 if rule[0] == 'HYPERNYM':
                     possible_hypernym = get_nltk_word(data[position])
                     error = False
@@ -61,21 +61,14 @@ def search(output_dict, rules_file):
                             pass
                     try:
                         if not error:
-                            print data[position + word_count - 2]
-                            print data[position + word_count - 1]
-                            print data[position + word_count]
-                            #print data[position + word_count][1][1]
-                            print (data[position + word_count]).__class__
                             if isinstance(data[position + word_count], nltk.tree.Tree):
-                                print "WORD"
-                                #print data[position + word_count][1][1]
-                                if data[position + word_count][0][1] == 'NP':
-                                    print "!!!!!!!"
-                                    #print get_nltk_word(data[position + word_count])
-                                    #print data[position + word_count]
-                                    add_to_dict(possible_hypernym[0], get_nltk_word(data[position + word_count]))
+                                if data[position + word_count].node == 'NP':
+                                    add_to_dict(possible_hypernym[0], data[position + word_count][0][0])
+                                elif data[position + word_count].node == 'NPs':
+                                    for node in data[position + word_count]:
+                                        if isinstance(node, nltk.tree.Tree):
+                                            add_to_dict(position, node[0][0])
                     except IndexError:
-                        print "INDEX ERROR"
                         pass
 
                 # search left side
