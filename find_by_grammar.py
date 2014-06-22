@@ -31,18 +31,25 @@ def search(output_dict, rules_file):
             return parser.parse(tagged_data)
 
         def get_nltk_word(data):
-            if isinstance(data[0], nltk.Tree):
-                return data[0][0][0]
+            if isinstance(data, nltk.tree.Tree):
+                if isinstance(data[0], tuple):
+                    return data[0][0]
+                else:
+                    return data[0]
             else:
                 return data[0]
 
         def add_to_dict(hypernym, hyponym):
-            old_list = word_dict.get(hypernym)
+            if not hyponym in word_dict.keys():
+                old_list = word_dict.get(hypernym)
 
-            if not old_list:
-                old_list = [hyponym]
+                if not old_list:
+                    old_list = [hyponym]
+                else:
+                    if not hyponym in old_list:
+                        old_list.append(hyponym)
 
-            word_dict[hypernym] = old_list
+                word_dict[hypernym] = old_list
 
         def apply_rules(data, position):
             for rule in rules:
@@ -51,6 +58,7 @@ def search(output_dict, rules_file):
                     possible_hypernym = get_nltk_word(data[position])
                     error = False
                     word_count = 1
+
                     for word in rule[1:-1]:
                         try:
                             if word != get_nltk_word(data[position + word_count]):
@@ -59,21 +67,51 @@ def search(output_dict, rules_file):
                             word_count += 1
                         except IndexError:
                             pass
+
                     try:
                         if not error:
                             if isinstance(data[position + word_count], nltk.tree.Tree):
-                                if data[position + word_count].node == 'NP':
-                                    add_to_dict(possible_hypernym[0], data[position + word_count][0][0])
-                                elif data[position + word_count].node == 'NPs':
+                                if data[position + word_count].node == 'NP' and rule[-1] == 'NP':
+                                    add_to_dict(possible_hypernym, data[position + word_count][0][0])
+                                    break
+                                elif data[position + word_count].node == 'NPs' and rule[-1] == 'NPs':
                                     for node in data[position + word_count]:
                                         if isinstance(node, nltk.tree.Tree):
-                                            add_to_dict(position, node[0][0])
+                                            add_to_dict(possible_hypernym, node[0][0])
+                                            break
                     except IndexError:
                         pass
 
                 # search left side
-                else:
-                    pass
+                elif rule[-1] == 'HYPERNYM':
+                    possible_hypernym = get_nltk_word(data[position])
+                    error = False
+                    word_count = -1
+                    nrule = list(rule)
+                    nrule.reverse()
+
+                    for word in nrule[1:-1]:
+                        try:
+                            if word != get_nltk_word(data[position + word_count]):
+                                error = False
+
+                            word_count -= 1
+                        except IndexError:
+                            pass
+
+                    try:
+                        if not error:
+                            if isinstance(data[position + word_count], nltk.tree.Tree):
+                                if data[position + word_count].node == 'NP' and rule[-1] == 'NP':
+                                    add_to_dict(possible_hypernym, data[position + word_count][0][0])
+                                    break
+                                elif data[position + word_count].node == 'NPs' and rule[-1] == 'NPs':
+                                    for node in data[position + word_count]:
+                                        if isinstance(node, nltk.tree.Tree):
+                                            add_to_dict(possible_hypernym, node[0][0])
+                                            break
+                    except IndexError:
+                        pass
 
         while not file_list.empty():
             input_file = file_list.get()
@@ -101,11 +139,9 @@ def search(output_dict, rules_file):
     file_list.join()
     print('')
 
-    print word_dict
-    # TODO save new dict
+    pickle_dict = dict()
 
+    for key in word_dict.keys():
+        pickle_dict[key] = word_dict.get(key)
 
-# TODO only for testing this should be called from learning.py
-output_dict = input_dict = os.path.join(os.path.dirname(__file__), 'learning/dict-test.pickle')
-output_rules = os.path.join(os.path.dirname(__file__), 'learning/rules-0.pickle')
-search(output_dict, output_rules)
+    pickle.dump(pickle_dict, open(output_dict, 'wb+'), 2)

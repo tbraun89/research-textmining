@@ -74,27 +74,36 @@ def learning(input_dict, output_rules):
             return None
 
         def add_rule(rule):
-            rts = []
+            if len(rule[1]) >= 3:
+                rts = []
 
-            for element in rule[1]:
-                if element[1] == 'NPs' or element[1] == 'NP':
-                    rts.append(element[1])
+                count = 0
+                for element in rule[1]:
+                    if element[1] == 'NPs' or element[1] == 'NP':
+                        if count == 0 or count == len(rule[1]) - 1:
+                            rts.append(element[1])
+                        else:
+                            if element[1] == 'NP':
+                                rts.append(element[0])
+                            else:
+                                for node in element[1]:
+                                    rts.append(node[0])
+                    else:
+                        rts.append(element[0])
+
+                    count += 1
+
+                if rule[0] == 'left':
+                    rts[len(rule[1]) - 1] = 'HYPERNYM'
                 else:
-                    rts.append(element[0])
+                    rts[0] = 'HYPERNYM'
 
-            if rule[0] == 'left':
-                rts[len(rule[1]) - 1] = 'HYPERNYM'
-                #rts[0] = 'HYPONYM'
-            else:
-                #rts[len(rule[1]) - 1] = 'HYPONYM'
-                rts[0] = 'HYPERNYM'
+                rts_str = ' | '.join(rts)
 
-            rts_str = ' | '.join(rts)
-
-            if rts_str in rules:
-                rules[rts_str] += 1
-            else:
-                rules[rts_str] = 1
+                if rts_str in rules:
+                    rules[rts_str] += 1
+                else:
+                    rules[rts_str] = 1
 
         while not file_list.empty():
             input_file = file_list.get()
