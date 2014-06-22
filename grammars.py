@@ -10,6 +10,21 @@ nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk'))
 MAX_SEARCH_RANGE = 5
 THRESHOLD = 2
 
+WORD_BLACKLIST = [
+    'yeah',
+    'oh',
+    'uh-huh',
+    '.',
+    'um-hum',
+    'um',
+    'uh',
+    'huh',
+    '(',
+    ')',
+    'hm',
+    'wow'
+]
+
 
 def learning(input_dict, output_rules):
     def worker():
@@ -126,6 +141,15 @@ def learning(input_dict, output_rules):
 
             file_list.task_done()
 
+    def blacklist_filter(rule):
+        result = True
+
+        for word in WORD_BLACKLIST:
+            if word in rule:
+                result = False
+
+        return result
+
     h_dict = pickle.load(open(input_dict, 'rb'))
 
     rules = Manager().dict()
@@ -148,7 +172,7 @@ def learning(input_dict, output_rules):
     print('')
 
     # filter the rules and save them
-    filtered_rules = {k: v for k, v in rules.items() if v >= THRESHOLD}
+    filtered_rules = {k: v for k, v in rules.items() if v >= THRESHOLD and blacklist_filter(k)}
     rule_list = sorted(filtered_rules.keys(), key=filtered_rules.get)
     rule_list.reverse()
 

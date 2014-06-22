@@ -29,6 +29,8 @@ while learning:
         print('Finding new rules:')
         grammars.learning(input_dict, output_rules)
 
+        time.sleep(5)
+
         print('Generating new dict:')
         find_by_grammar.search(output_dict, output_rules)
 
