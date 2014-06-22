@@ -1,4 +1,5 @@
 from multiprocessing import Process, JoinableQueue, Manager
+from num2words import num2words
 import os
 import pickle
 import nltk
@@ -22,7 +23,17 @@ WORD_BLACKLIST = [
     '(',
     ')',
     'hm',
-    'wow'
+    'wow',
+    'okay',
+    '| HYPERNYM |',
+    'N | P | s',
+    'and | and',
+    'one',
+    'yes',
+    'HMO',
+    'that | that',
+    'hello',
+    'online'
 ]
 
 
@@ -62,7 +73,7 @@ def learning(input_dict, output_rules):
                                 has_hyponym.append(len(current_list))
 
                         elif element[position].node == 'NPs':
-                            for possible_np in element[position]:
+                            for possible_np in element[position][0]:
                                 if isinstance(possible_np, nltk.tree.Tree):
                                     if possible_np[0][0] in hypernym_list[hypernym[1]]:
                                         has_hyponym.append(len(current_list))
@@ -143,8 +154,12 @@ def learning(input_dict, output_rules):
 
     def blacklist_filter(rule):
         result = True
+        number_blacklist = []
 
-        for word in WORD_BLACKLIST:
+        for i in range(100):
+            number_blacklist.append(num2words(i).encode('ascii'))
+
+        for word in (WORD_BLACKLIST + number_blacklist):
             if word in rule:
                 result = False
 
