@@ -15,3 +15,23 @@
     \end{itemize}
   \end{itemize}
 \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Der Pendel-Algorithmus}
+
+  \begin{lstlisting}
+  load dict;
+  load rules;
+  load corpus;
+  
+  do
+    foreach (sentence in corpus)
+      if (dict.words in sentence)
+        foreach (rule in rules)
+          count = rule match sentence;
+          
+          if (count > THRESHOLD)
+            add word to knowledge;
+  while (no new rules found);
+  \end{lstlisting}
+\end{frame}
