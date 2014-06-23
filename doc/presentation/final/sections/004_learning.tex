@@ -5,33 +5,88 @@
   \frametitle{Lernen von Regeln - Überblick}
 
   \begin{itemize}
-  \item Initiales Wissen (Wörterbuch)
-  \item Generierung initialer Regeln
-  \item Verwendung des Pendel-Algorithmus (Biemann 2003)
+  \item Initiales Wörterbuch
+  \item Generierung durch Hearst Pattern \& WordNet
+  \item Lernen von Regeln
     \begin{itemize}
-    \item Regeln anwenden um neues Wissen zu generieren
-    \item Wissen verwenden um neue Regeln zu finden
-    \item Wiederholen bis keine neuen Regeln gefunden werden können
+    \item Wörterbuch verwenden um Regeln zu finden
+    \item Pendel-Algorithmus verwenden um neues Wissen aus gefundenen
+      Regeln zu generieren \cite{Biemann:2003}
+    \item Wissen verwenden um neues Wörterbuch zu erzeugen
+    \item Wiederholen bis kein neues Wissen mehr erzeugt wird
     \end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Der Pendel-Algorithmus}
+  \frametitle{Initiales Wörterbuch}
 
   \begin{lstlisting}
-  load dict;
-  load rules;
-  load corpus;
-  
-  do
-    foreach (sentence in corpus)
-      if (dict.words in sentence)
-        foreach (rule in rules)
-          count = rule match sentence;
-          
-          if (count > THRESHOLD)
-            add word to knowledge;
-  while (no new rules found);
+    dict = {
+      'business:   ['agency'],
+      'illness':   ['influenza'],
+      'material':  ['cork', 'rubber'],
+      'structure': ['barn'],
+      'things':    ['property']
+    }
   \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Lernverfahren}
+
+  \begin{lstlisting}
+    use dict (seed);
+
+    do
+      find (rules);
+
+      search (hypernyms with hyponyms);
+    while (no new rules found);
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Regeln finden - Pendel-Algorithmus}
+
+  \begin{lstlisting}
+    load dict;
+    load corpus;
+    
+    init new knowledge;
+    init new rules;
+
+    foreach (sentence in corpus)
+      foreach (relation in dict)
+        if (relation in sentence)
+          generate (new rule) -> rules;
+
+    foreach (rule in rules)
+      if (rule.count > THRESHOLD)
+        add (rule -> knowledge);
+  \end{lstlisting}
+
+  \let\thefootnote\relax\footnote{\cite{Biemann:2003}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Hypernyme \& Hyponyme suchen}
+
+  \begin{lstlisting}
+    load rules;
+    load corpus;
+
+    init new dict;
+
+    foreach (sentence in corpus)
+      foreach (rule in rules)
+        if (match(rule, sentence))
+          add ([hypernym, hyponym] -> dict);
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ergebnisse}
+
+  TODO
 \end{frame}

@@ -11,15 +11,15 @@
 \usepackage{listings}
 \usepackage{scalefnt}
 \usepackage{listings}
-%\usepackage{pgfpages}
+\usepackage[authoryear]{natbib}
+
+\newcommand{\newblock}{}
 
 \usetheme{Rochester}
 \usecolortheme{beaver}
 \beamertemplatenavigationsymbolsempty
 
 \usetikzlibrary{fit,positioning,arrows}
-
-%\setbeameroption{show notes on second screen}
 
 \title{Text Mining}
 \author{Andr\'{e} Vogler, Torsten Braun}
@@ -43,4 +43,14 @@
 	\frame{\frametitle{Agenda}\tableofcontents}
 	
 	\input{frames}
+
+        \section{Literatur}
+        \label{sec:literatur}
+
+        \begin{frame}[shrink=5]
+          \frametitle{Literatur}
+          
+          \bibliographystyle{agsm}
+          \bibliography{source}
+        \end{frame}
 \end{document}

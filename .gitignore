@@ -28,6 +28,8 @@
 *.blg
 *.~
 *.vrb
+*blx.bib
+*run.xml
 
 # generated
 doc/docu/img/dfa.png
