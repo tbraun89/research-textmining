@@ -27,6 +27,7 @@
 *.bbl
 *.blg
 *.~
+*.vrb
 
 # generated
 doc/docu/img/dfa.png
