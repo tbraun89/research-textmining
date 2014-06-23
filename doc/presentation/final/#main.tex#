@@ -1,0 +1,44 @@
+\documentclass[notes]{beamer}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{textpos}
+\usepackage{tikz}
+\usepackage{dirtree}
+\usepackage{ragged2e}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{scalefnt}
+%\usepackage{pgfpages}
+
+\usetheme{Rochester}
+\usecolortheme{beaver}
+\beamertemplatenavigationsymbolsempty
+
+\usetikzlibrary{fit,positioning,arrows}
+
+%\setbeameroption{show notes on second screen}
+
+\title{Text Mining}
+\author{Andr\'{e} Vogler, Torsten Braun}
+\date{\today}
+
+\titlegraphic{
+	\vspace{1.2cm}
+	\includegraphics[scale=0.2]{img/logo_htw}
+}
+
+\addtobeamertemplate{frametitle}{
+	\begin{textblock*}{\paperwidth}(225pt,-30pt)
+		\includegraphics[scale=0.15]{img/logo_htw}
+	\end{textblock*}
+}
+
+\setbeamertemplate{footline}[frame number]
+
+\begin{document}
+	\frame{\titlepage}
+	\frame{\frametitle{Agenda}\tableofcontents}
+	
+	\input{frames}
+\end{document}
