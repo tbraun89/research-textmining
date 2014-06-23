@@ -85,10 +85,55 @@
   \end{lstlisting}
 \end{frame}
 
+\section{Ergebnisse \& Fazit}
+
 \begin{frame}
   \frametitle{Ergebnisse - Itteration 1}
 
   \begin{itemize}
-  \item 
+  \item 2 Regeln
+    \begin{itemize}
+    \item NP~\textpipe~like~\textpipe~HYPERNYM
+    \item HYPERNYM~\textpipe~like~\textpipe~NP
+    \end{itemize}
+
+  \item 744 Hypernyme
+  \item 1.505 Hyponyme
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ergebnisse - Itteration 2}
+
+  \begin{itemize}
+  \item 156 Regeln
+    \begin{itemize}
+    \item HYPERNYM~\textpipe~like~\textpipe~that~\textpipe~NP
+    \item HYPERNYM~\textpipe~such~\textpipe~as~\textpipe~NP
+    \item NP~\textpipe~and~\textpipe~other~\textpipe~HYPERNYM
+    \item HYPERNYM~\textpipe~that~\textpipe~sounds~\textpipe~good~\textpipe~NP
+    \item NP~\textpipe~percent~\textpipe~HYPERNYM
+    \item ...
+    \end{itemize}
+
+  \item 28.990 Hypernyme
+  \item 126.386 Hyponyme
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fazit}
+
+  \begin{itemize}
+  \item Itteration 3 ergab 3.084 Regeln
+  \item Starkes Wachstum neuer Daten pro Iteration
+  \item Lernen dauert dauert dadurch zu Lange
+  \item Ausblick:
+    \begin{itemize}
+    \item Wissen nicht nur anhand eines Schwellwerts generieren
+    \item Verwendung einer guten Blacklist zum aussortieren von Regeln
+    \item Implementierung weiterer Filter um schlechte Regeln zu entfernen
+    \item Entwicklung von Algorithmen zur Erkennung schlechter Regeln
+    \end{itemize}
   \end{itemize}
 \end{frame}
