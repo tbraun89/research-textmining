@@ -33,15 +33,23 @@
 \begin{frame}[fragile]
   \frametitle{Lernverfahren}
 
-  \begin{lstlisting}
-    use dict (seed);
+  \centering
+  \begin{tikzpicture}[node distance = 2cm, auto]
+    % Draw nodes
+    \node [block] (init) {Initiales Wörterbuch laden};
+    \node [block, below of=init] (find) {Neue Regeln finden};
+    \node [block, below of=find] (search) {Hypernyme und Hyponyme
+      suchen};
+    \node [cloud, below of=search] (exit) {Ende};
 
-    do
-      find (rules);
-
-      search (hypernyms with hyponyms);
-    while (no new rules found);
-  \end{lstlisting}
+    % Draw lines
+    \path [line] (init) -- (find);
+    \path [line] (find) -- (search);
+    \path [line] (search.west) -| ++(-0.5,0) |- node [near start]
+    {sonst} (find.west);
+    \path [line] (search) -- node [near start] {keine neuen Regeln
+      gefunden} (exit);
+  \end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]
