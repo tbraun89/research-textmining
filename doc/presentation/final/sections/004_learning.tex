@@ -9,8 +9,7 @@
   \item Lernen von Regeln
     \begin{itemize}
     \item Wörterbuch verwenden, um Regeln zu finden
-    \item Pendel-Algorithmus verwenden um neues Wissen aus gefundenen
-      Regeln zu generieren \cite{Biemann:2003}
+    \item Neues Wissen aus gefundenen Regeln generieren
     \item Wissen verwenden, um neues Wörterbuch zu erzeugen
     \item Wiederholen bis kein neues Wissen mehr erzeugt wird
     \end{itemize}
@@ -34,15 +33,23 @@
 \begin{frame}[fragile]
   \frametitle{Lernverfahren}
 
-  \begin{lstlisting}
-    use dict (seed);
+  \centering
+  \begin{tikzpicture}[node distance = 2cm, auto]
+    % Draw nodes
+    \node [block] (init) {Initiales Wörterbuch laden};
+    \node [block, below of=init] (find) {Neue Regeln finden};
+    \node [block, below of=find] (search) {Hypernyme und Hyponyme
+      suchen};
+    \node [cloud, below of=search] (exit) {Ende};
 
-    do
-      find (rules);
-
-      search (hypernyms with hyponyms);
-    while (no new rules found);
-  \end{lstlisting}
+    % Draw lines
+    \path [line] (init) -- (find);
+    \path [line] (find) -- (search);
+    \path [line] (search.west) -| ++(-0.5,0) |- node [near start]
+    {sonst} (find.west);
+    \path [line] (search) -- node [near start] {keine neuen Regeln
+      gefunden} (exit);
+  \end{tikzpicture}
 \end{frame}
 
 \begin{frame}[fragile]

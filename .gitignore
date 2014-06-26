@@ -20,6 +20,7 @@
 *.fdb_latexmk
 *.out
 *.pdf*
+!*.pdfpc
 *.el
 *.snm
 *.toc
