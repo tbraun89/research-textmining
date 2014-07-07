@@ -47,8 +47,8 @@
     \path [line] (find) -- (search);
     \path [line] (search.west) -| ++(-0.5,0) |- node [near start]
     {sonst} (find.west);
-    \path [line] (search) -- node [near start] {keine neuen Regeln
-      gefunden} (exit);
+    \path [line] (find.east) -| ++(0.5,0) |-  node [near end] {keine
+      neuen Regeln} (exit); 
   \end{tikzpicture}
 \end{frame}
 
