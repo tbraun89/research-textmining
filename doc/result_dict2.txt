@@ -1,0 +1,146 @@
+Dict 2 Ergebnisse: 
+
+korrekt:
+Jamie Tarses ~> president
+H2A ~> Histamine
+Tomato Gene Index ~> TIGR
+Oak Cliff ~> Castle Park
+Jesuit College ~> St. Joseph
+Maybachufer ~> Kreuzberg
+illustrate ~> merging, subtler, simple
+Pamunkey Indian ~> Virginia
+Michael ~> Archangel
+polyarthritis ~> Tg197
+mileage ~> reliability
+Chondrostei ~> Acipenseriformes
+cover ~> magazine, logo
+Justice ~> Hague, FISA Court, FTC
+site ~> alpha4-beta2, alpha3-beta2, Axilla Groin, Groin Rectal, Rectal Becton Dickinson, 
+		artilage, Banpo, www.gao.gov, Montego Bay, Greenwich, Nueva Sevilla, Atlantic City,
+		Portugal, Forbidden City, Little Western Heaven, Western Hills, Blackpool, Tell El Amarna,
+		Serra Orrios, Sardis, Mycenae, Central Park, Briteiros, Gourniá, Puerto Rico
+Shekou ~> Natau Peninsula
+La Ribera ~> Gothic Quarter
+Second Law ~> Computational Dynamics
+capitals ~>  Karangasem
+fillet ~> lamb
+Arizona Avenue ~> Third Street Promenade
+sciences ~> investigate, physicists
+responsiveness ~> inflammatory
+trimethylamine ~> methanol
+Meperidine Administration ~> meperidine
+entities ~> industry, biosphere, Publishers Clearing House, nongovernment, telecommunications, M-branes, Carnegie Mellon
+critique ~> Daniel Goldhagen 
+return ~>	compensation
+aerosolization ~> Collison
+AMV ~> Anterior
+
+falsch:
+site ~> Albino Alligator, injury, pI, nAChR, U976G, MAP, amino, origin,
+		introns, splice, pUC19, transducer, serine, GSK3β, gp41, derepression, methionine, encourage, laminin, 
+		aggrecan, versican, SBF,  rearrangement, breakage, Pgm Sfor, pBluescript, MRC5, Nrg1, Uri Peles, 
+		eastern, Btk, tyrosine, pDOI, incomming, Cdk4, N604, VR1, LtrA, GAMYB, MAO, 
+		NMDA, ex-husband, URA3, pARS-VN, leukocyte, pOS.DUP/DEL, pNEB193, Follistatin,  DDRP, insert, 
+		dmsA, pct1, Tn, nonviolent, lame, pBII, PPT1, teratogen, gingival, resting, ThiF, plasmin, integrin, subsequent, 
+		pEGFP-cPLA, palmitoylation, nfxB, , 
+		GAACTGGAGGAGAGTAGC, OSHA, DBD, Acrocorinth, propranolol, pT7Blue, , PIP1,  pBP3, Parque, L., Mnl, pBPhin, pHIP, IQ3, 
+		synapse, EC1, Martian, stewardship, replicate, overlain, Ssp, AtCOP1, Abcg8, Hae III, Hnt2, Fasn, John F. Kennedy Jr, 
+		pEGFP, ancient, Polyohni, combats, 
+		twentysomething, Mary Anne Mohanraj,  Cbf1p, Glendalough, Blair Bitch Project, ICH, c-fos, C/EBPβ, SRE
+byline ~> Hank Aaron, Richard Boudreaux, Alessandra Stanley
+heaven ~> Revlon's
+wake ~> Prop, Sept., James Fallows, yesterday's, Daimler-Benz, Jewish, Roe, American Home Products, Asian, Littleton
+capitals ~> slender, accompanying
+responsiveness ~> C/EBPβ, lung, fMLP, SSc, TGF-βs, NSCLC
+advantages ~> 	economies, bednets, resin, surveillance, CLOs, SSH, ensue, IL-1Ra, rodent, SCH, fluency, freer, Canada’s, 
+				disadvantages
+wack-jobs ~> Social
+magnificence ~> Burgundian
+colleagues ~> Please, Edelman Worldwide, ecosystem, Tokaimura, Iraqi, The New Yorker, censure, Musee Fabre, Asia Society, 
+				Gene Tierney, 
+				“Boswell, Columbia University, Wye, clothesfuck, Los Alamos, National, Wageningen Centre, Maennerchor Society, 
+				Crum, Chicago Historical Society, Harvard Medical School, interlocutor
+				
+critique ~> bionomics, Republican, write-offs, liberalism, integrationist, revisionism, Nazi-era, DSM-IV, Tupperware, O'Connor
+Berthed ~> museum’s
+nationalism ~> monastery, Yugoslavs, socialism
+Apprehension ~> Senior
+leaflets ~> rainy
+DMSO ~> Embryo, pK, spectrophotometry
+Michael Dukakis ~> Presidential
+Peter Drucker ~> Management Challenges
+Resuming ~> sliding
+Pitch ~> Auditory System Sound
+return ~> kid, anything, heat, Jordan, Albanians, prison, Hong Kong, average, Yemen, Hubbell's, promotions, 
+			accomplishing, Admin Law Judges, Hiroshima, Colgate, refugees, Crossfire, , democracy, Tina Brown, barbarism, 
+			profitability, Intel's, 
+			stockholders, exorcism, Ma, Social, Gen, Gen-Xers, equilibrium, offbeat, Bhopal, Che Guevara, internment, deferring, 
+			Orthodoxy, resting, promises, respectability, 
+			Tekek, postgraduate, Scheidt, U.N., McIntyre, femininity, geography, deposits, Kuala Lumpur, Catalan, 
+			yes-but-on-the-other-hand, Huffman, Humayun, roller, China's, 
+			fashionability, skimping, hostages, curvy
+entities ~> rulemaking, New
+renter ~> Blockbuster
+prior ~> promulgation, sulfuration
+teleconference ~> principals
+Scheduled ~> Sept.
+employment ~> continuation, plurals
+jurisdiction ~> Incident Commander, Sant 
+CS101 ~> pel
+co-expression ~> ALK3Q233D, SNIP1, Fyn, βγ, LXRα
+Vice-Chancellor ~> Macquarie University
+Shapiro ~> Stump
+primases ~> herpesviruses
+G102 ~> G189
+constructing ~> ClustalW, PhPP, autogene, multivariate, bizarre
+`Street ~> Dark Shops
+Too Much Time ~> Her HandsSeattle Dear Too Much Time
+C/EBPα ~> prolonging
+Frankfurter Allgemeine Zeitung ~> Germany, Süddeutsche
+Benét ~> The
+TRAIL ~> S., death-domain
+Heroin ~> New Popularity Claims Unlikely Victims
+Congressional Daily Digest ~> Congressional
+slur ~> intense, liquid
+Attorney ~> Minneapolis, DuPage County
+attend ~> trials
+vetoes ~> appropriations
+translocation ~> 	p65, NF-kB, PKC, secretory, acute, bile, effector, Smad3, NFAT, GR-GFPs, 
+					NF-κB, Golgi, cPLA, EYFP-cPLA, SMG, PKN, Chromosome
+indicating ~> Selena, Tn
+Justice ~> William Rehnquist, Strange Sexual Politics Do, Hallmarks, longstanding, Hard, Counterintelligence, Upper Canada
+Cary ~> Crap
+Human Rights Approach ~> Mental Health
+illustrate ~> interphylum
+Christianity ~> opposition, supremacy, African, Catalonian
+Menehú ~> ghostwritten
+Michael ~> Goodwill, shopworn, handsome, subsequent
+Head ~> Radio, Blockbuster, Saddam Hussein Iraq
+minutiae ~> Hasidic
+slab ~> granite.”, obviousness, mid-diaphysis, earth’s
+meddling ~> Baugh
+Eichmann ~> handwriting, guilt
+Tell ~> bitch, Europeans, Hype, testers, Lie
+Peyer ~> patches
+tinkering ~> senator, incrementalism
+Edward Brynes Date ~> Sun
+inauguration ~> Oct.
+soutanes ~> Old Catholic
+sailing ~> Mediterranean
+cRNA ~> T3
+successor ~> head, Muhammad, Darwin, JI, CAPPS, Rev
+National Geographic Reader ~> Digest
+dad ~> girlfriend, gotten, Blake, Cameron, masturbation, earnest, grew, embarrassing, poker
+patriot ~> Jim
+envy ~> Pol Pot
+funding ~> HIV/AIDS, Minnesota Legislature, Jameson Camp, Arab, counterterrorism, charities, unorthodox, 
+			genomics, DARE, autism, KLA, abortions, MyCFO, IOLTA, indecent, proper, legal-services, 
+			Kaiser Permanente, Jesse Jackson, Chandra, lega
+Near ~> park’s, hammam, pleasant, Puerta
+cover ~> 	IRS, Paris, NR, Rupert, Czech Republic, Dunkirk, darknessfrom, Leo, darkness, rocky, Angry Johnny, ancient, 
+			She Shot Me Down, Nicole Kidman, careless, eastern
+detection ~> sarin, hemorrhage, sizes, GFP, cis-, ERα, ERβ, fast-, gp41, redox, electron, analytes, P., subsequent, 
+			cancers, interval, Surv, r, cirrhosis, SSR, EP2, BrdU, scarce, estrogen, PTHrP, splice, subtle, GFAP, lung, 
+			eSensor, nonadherence, ADGE, HCV, turbidity, airborne, FAM, myosins, ribosylation, OPN, A'B, SL1, K103N, H., LC-MS, 
+			DDE, terrorist, outbreaks, ECG, alcoholism
+vanity ~> desire, cyberspace, pleats
