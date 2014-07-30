@@ -1,0 +1,117 @@
+Dict 1 Ergebnisse: 58,65% korrekt - 41.35% falsch
+
+Korrekt:
+Democrats ~> Tauzin, Stephanopoulos
+carbohydrates ~> glucose
+people ~> 	Furrow, Thernstrom, Charles Manson, Saddam Hussein,
+			Herzer, Kuttner, Dick McMahon, Jesse Jackson, Krugman, Leona Helmsley, Phyllis Diller, Roberts,
+			Hamanaka, Tina Lavery, Noriega, Starkist, Neil Young, Wriston, Jeans, Wilcha,
+			Tonelson, Lee, Ted, Swiss, Patty Hearst, Congresswoman Nita, Hitler, Esther Dyson
+areas ~> Grafton, Plano, science, Grizedale Forest
+corporations ~> General Motors
+word ~> disgusting, quirt, organism, allrightnik, fear, Goody, herstory, Heights, leg
+names ~> Old Banyan Tree, Auchtermuchty, Hobie Cat, rozbif, blackbutt, Savile Roy, Anusol, Stumbling Bear, Agne∫s
+label ~> Illiterate, International Harvester
+bands ~> Hanson
+careers ~> construction
+institutions ~> MIT, Lowell High School
+populations ~> Chinese
+reads ~> gobbledygook
+war-supporters ~> D’Annunzio
+economist ~> Barro
+Kids ~> Tommie J.
+movies ~> Interview, Dances, Die Hard, Casino Royale, Look Who
+like ~> hit
+e-tailers ~> Amazon
+Work ~> Stainier
+retailers ~> Car Max Auto Superstores, Lands
+systems ~> Windows
+machinery ~> drill
+spread ~> wildfire, cancer, weeds
+doctrines ~> bionomics
+emotions ~> Schadenfreude
+foods ~> roast
+toffee ~> substance
+wildlife ~> wild
+authors ~> Martin Amis, Bobbie Ann Mason, Dinesh D'Souza, John Mortimer
+benefits ~> universal, vacation, retirement
+Republican ~> Patrick Buchanan
+journalist ~> Cassidy, Taylor
+arteries ~> aorta
+Restaurants ~> Shoney
+articles ~> yours
+niceties ~> context
+neighborhoods ~> mine
+constructions ~> Me
+initiatives ~> teen
+babies ~> laundry
+student ~> Joe Johnson
+infections ~> brucellosis
+looks ~> ancient, rigor
+needs ~> food
+leaders ~> Jesse Jackson
+cop1- ~> cosuppressionphenotype
+filmmakers ~> Borchardt
+categories ~> utilities
+guests ~> Bill Kristol
+Scholars ~> A.D.
+enthusiasts ~> Kelly
+treats ~> honey, candy
+influenza ~> illness
+Adulterers ~> Frank Gifford
+audience ~> consumers
+monocyte ~> characteristics
+			
+Falsch:
+grow ~> crazy
+mysteries ~> Agatha Christie
+looks ~> maybe, Doogie Howser, Hell's, Graceland, Untitled, footage, fun, Lillian Hellman, reality, rain
+infections ~> H.
+neighborhoods ~> mine
+scene ~> none
+leaders ~> Sen.
+shut ~> wardrobes
+seems ~> drivers
+whereas ~> State
+supply ~> California
+father ~> son
+constructions ~> Me
+initiatives ~> teen
+babies ~> laundry
+forms ~> [
+shirt ~> Kazin
+house ~> utilities, Cape Cod, cactus
+loud ~> Wordsworth
+pesticide ~> pesticides
+spectacular ~> Independence
+stones ~> trees
+Deep South ~> south
+afloat ~> hand
+one ~> Spark
+Net ~> eBay
+Psycholinguists ~> F.
+NRA ~> mad
+Democrats ~> Sen.
+people ~> airline, shut, Sen., whenever, awkward, pizza, spaghetti, everybody, bus, turnips
+corporations ~> yours
+irradiation ~> writer
+amendment ~> Hawaii's
+dad ~> blew
+facilities ~> golf
+Sagittarius ~> Kennedy
+snickerfest ~> Beaches
+frightening ~> whoa
+Sounds ~> Performance Art Night, Red Green, nirvana
+suggesting ~> handcraft
+code ~> I-20878-2619
+“tea ~> mother
+labor ~> dogs
+sources ~> Davis
+paint ~> thirteen
+performance ~> Reese Witherspoon
+today ~> today, Scream
+assays ~> CD4
+endeavors ~> team, MGM Grand
+murders ~> do
+clothes ~> nice
+sector ~> women’s
