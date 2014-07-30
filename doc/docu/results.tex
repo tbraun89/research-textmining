@@ -1,41 +1,31 @@
 \section{Resultate}%
-%
-Durch die Auswertung des verwendeten DFA haben wir aus den 11.939.180 Wörten
-die im OANC enthalten sind, 2.716 Hyperonyme erkennen können, welche
-mit 21.028 Hyponymen in Beziehung stehen. Auf Grund der strikten und ausschließlichen
-Anwendung der Hearst Patterns, sind auch viele fehlerhafte
-Beziehungen enthalten. Da die Analyse nur von Hand durchgeführt werden
-kann, haben wir eine Stichprobe\footnote{Die komplette Tabelle
-  befindet sich im Anhang.} von 100 Hyperonymen mit 450 Hypoynmen
-untersucht und dabei herausgefunden, dass eine Hyponymie nur in ca.
-56.22\% tatsächlich stimmt, der Rest sind fehlerhaft erkannte
-Beziehungen, somit ist diese Methode alleine nicht brauchbar um
-Hyponymie zwischen Wörtern automatisch zu erkennen. Folgend sind einige
-Auszüge aus den untersuchten Ergebnissen aufgeführt.%
-%
-\begin{longtable}{|l|l|}
-  \hline
-  \textbf{Hyperonym} & \textbf{Hyponym} \\
-  \hline
-  proteins & APC, AlkB, Axin, Bak, Bem1, CD81, LAP1,
-  LAP2, MAN1 \\
-  \hline
-  places & Africa, Amazon, Ankara, California, Indien, \textbf{oh},
-  \textbf{New}, \textbf{water} \\
-  \hline
-  people & Charles, Elvis, Ivan Julius,
-  \textbf{pizza}, \textbf{look}, \textbf{that}, \textbf{thinks} \\
-  \hline
-\end{longtable}%
-~\\%
-Dabei sind die fett markierten Wörter fehlerhaft erkannte Hyponyme,
-die nicht in Beziehung zu ihrem angegebenen Hyperonym stehen.%
-\\%
-Um nun bessere Ergebnisse zu erhalten, könnten zum einen die Regeln
-der Hearst Patterns angepasst werden, um so schon die Auswahl der
-Funde weiter zu begrenzen. Zusätlich könnte noch ein weiterer
-Schritt einegführt werden, der die Wahrscheinlichkeit berechnet, dass
-ein Hyponym wirklich in Beziehung zu seinem Hyperonym steht. Dafür
-müsste entweder ein neuer Algorithmus entwickelt werden oder ein
-passendes Lernverfahren gefunden werden, um die Wahrscheinlichkeit zu
-maximieren, dass die gefunden Paare tatsächlich eine Hyponymie bilden.
+Im Laufe einer ersten Untersuchung unter ausschließlicher Anwendung 
+vordefinierter Hearst-Patterns ergab die Auswertung eine korrekte
+Erkennung von 56.22\% der untersuchten Stichprobe von 100 Hyperonymen mit
+450 zugeordneten Hyponymen. Im Rahmen der Einführung des Lernverfahrens,
+wurden die Suche von ausgewählten Hearst-Patterns durch die erlernten 
+Schematas ersetzt und diese mit einem initialen Seed auf den Corpus 
+angewendet. Aus dem ersten Durchlauf mit gelernten Regeln wurde erneut
+eine Stichprobe von 100 Hyperonymen entnommen, denen 208 Hyponyme 
+zugeordnet wurden. Hierbei konnte positive Trefferqoute von 58.65\% 
+gemessen werden, was minimal besser ist als das Ergebnis der definieren
+Hearts-Patterns. Dies ist allerdings nur der Fall, da in das Lernverfahren
+eine Blacklist mit nicht zu verwendenden Worten eingepflegt wurde. Ohne
+dieses Verfahren waren die Ergebnisse deutlich schlechter, besonders bei
+Analysen von Sprachprotollen, wurden etliche Füllwörter bzw. Ausdrücke 
+wie ``oh'' und ähnliches erkannt. Nach dem zweiten Iterationsschritt des
+Lernverfahrens, war allerdings ein massiver Einbruch der Trefferqoute auf
+lediglich 13.02\% korrekter Erkennung zu messen. Hierbei wurde erneut eine
+Stichprobe von 100 Hyperonyme analysiert. In diesem Schritt wurden diesen
+Hyperonymen, 507 Hyponyme zugeordnet. Der deutliche Abfall der Trefferqoute
+ist im besonderen darauf zurückzuführen, das die 41.35\% falschen Ergebnisse 
+aus dem ersten Iterationsschritt mit übernommen wurden. In einem 
+automatisierten Lernverfahren ist dies aber ohne die Entwicklung eines 
+entsprechenden Verifikationsalgorhytmus allerdings nicht zu vermeiden.
+Um das Lernverfahren zu verbessern wäre es nun natürlich möglich unter 
+Nutzung eines kleinen Corpus nach jedem Iterationsschritt, die gefundenen
+Regeln zu überprüfen um die Blacklist zu verbessern und Wörter und Regeln
+aus dem Lernverfahren auszuschließen. Eine weitere Möglichkeit wäre die 
+Einbeziehung von Wörtern auch vor und hinter dem Bereich zwischen den
+untersuchten Hypero- und Hyponymen, da diese durchaus relevant für die
+Satzstruktur und den grammatikalischen Zusammenhang seien können.
