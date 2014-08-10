@@ -1,31 +1,57 @@
 \section{Resultate}%
-Im Laufe einer ersten Untersuchung unter ausschließlicher Anwendung 
-vordefinierter Hearst-Patterns ergab die Auswertung eine korrekte
-Erkennung von 56.22\% der untersuchten Stichprobe von 100 Hyperonymen mit
-450 zugeordneten Hyponymen. Im Rahmen der Einführung des Lernverfahrens,
-wurden die Suche von ausgewählten Hearst-Patterns durch die erlernten 
-Schematas ersetzt und diese mit einem initialen Seed auf den Corpus 
-angewendet. Aus dem ersten Durchlauf mit gelernten Regeln wurde erneut
-eine Stichprobe von 100 Hyperonymen entnommen, denen 208 Hyponyme 
-zugeordnet wurden. Hierbei konnte positive Trefferqoute von 58.65\% 
-gemessen werden, was minimal besser ist als das Ergebnis der definieren
-Hearts-Patterns. Dies ist allerdings nur der Fall, da in das Lernverfahren
-eine Blacklist mit nicht zu verwendenden Worten eingepflegt wurde. Ohne
-dieses Verfahren waren die Ergebnisse deutlich schlechter, besonders bei
-Analysen von Sprachprotollen, wurden etliche Füllwörter bzw. Ausdrücke 
-wie ``oh'' und ähnliches erkannt. Nach dem zweiten Iterationsschritt des
-Lernverfahrens, war allerdings ein massiver Einbruch der Trefferqoute auf
-lediglich 13.02\% korrekter Erkennung zu messen. Hierbei wurde erneut eine
-Stichprobe von 100 Hyperonyme analysiert. In diesem Schritt wurden diesen
-Hyperonymen, 507 Hyponyme zugeordnet. Der deutliche Abfall der Trefferqoute
-ist im besonderen darauf zurückzuführen, das die 41.35\% falschen Ergebnisse 
-aus dem ersten Iterationsschritt mit übernommen wurden. In einem 
-automatisierten Lernverfahren ist dies aber ohne die Entwicklung eines 
-entsprechenden Verifikationsalgorhytmus allerdings nicht zu vermeiden.
-Um das Lernverfahren zu verbessern wäre es nun natürlich möglich unter 
-Nutzung eines kleinen Corpus nach jedem Iterationsschritt, die gefundenen
-Regeln zu überprüfen um die Blacklist zu verbessern und Wörter und Regeln
-aus dem Lernverfahren auszuschließen. Eine weitere Möglichkeit wäre die 
-Einbeziehung von Wörtern auch vor und hinter dem Bereich zwischen den
-untersuchten Hypero- und Hyponymen, da diese durchaus relevant für die
-Satzstruktur und den grammatikalischen Zusammenhang seien können.
+Für die statistische Auswertung der Resultate, wurden jeweils 100
+zufällige Hyperonyme, mit ihren zugehörigen Hyponymen, automatisiert
+als Stichprobe ausgewählt.
+Im Rahmen der Forschung wurde als erster Schritt das erkennen über
+vordefinierte Hearst Patterns durchgeführt. Hierbei wurde eine 
+korrekte Erkennungsrate von 56.22\% gemessen. Die Stichprobe der 
+Hyperonyme enthielt 450 zugehörige Hyponyme.
+Diese Ergebnisse wurden zur Verwendung als Trainingsdaten für das 
+abgewandelte Pendelverfahren, welches für die weiteren Untersuchungen
+verwendet wurde, mit WordNet abgeglichen. Das Resultat dieses Abgleiches
+besteht aus 5 Hyperonymen mit 6 dazugehörigen Hyponymen, deren Korrektheit
+sicher ist. 
+
+-- LISTE --
+
+Mit diesen Startwerten erlernte das Verfahren daraufhin 2 Regeln für
+Hyponomierelationen. 
+
+-- CODE BLOCK --
+
+Durch Anwendung dieser Regeln wurden 744 Hyperonyme mit 1505 
+Hyponymen erkannt. Die Untersuchung einer Stichprobe ergab für die 
+208 untersuchten Hyponyme eine positive Erkennungsrate von 58.65\%.
+Dieses Ergebnis ist minimal besser als dass welches die definierten 
+Hearst-Patterns gefunden haben. Hierbei ist allerdings zu beachten,
+dass die erlernten Regeln, eine exakte Abbildung eines Hearst-Patterns
+und dessen Inverse darstellt. %checK!% 
+Im darauf folgenden Iterationsschritt wurden unter Anwendung der gefunden
+Hyponomierelationen 156 Regeln erlernt. Mit diesen Regeln wurden 
+28.990 Hyperonyme mit 126.386 Hyponymen gefunden. Als Erkennungsrate
+der erneuten Stichprobe wurde 13.02\% gemessen. Dieser deutliche 
+Abfall in den Ergebnissen lässt darauf schließen, dass der alleinige
+Einsatz von selbsterlernten Regeln, welche ähnlich zu Hearst-Patterns
+aufgebaut sind, keine ausreichend guten Ergebnisse liefern wird. 
+Ohne den Einsatz der Blacklist wären die Ergebnisse sogar noch deutlich
+schlechter ausgefallen wie vorherige Tests zeigten. 
+Ein weiteres Problem des Verfahrens besteht außerdem in dem exponentiellen
+Wachstum der Regeln. In Iterationsschritt 3 wurden nämlich bereits 3.084
+Regeln erlernt, was den Erkennungsdurchlauf so rechenaufwendig werden
+ließ, das er mit einer Sechskern-CPU die auf 4Ghz getaktet ist, über 
+einen Tag gedauert hätte. Um dieses Wachstum zu begrenzen und die 
+Erkennungsrate zu verbessern wären nun eine Reihe von Verbesserungen
+möglich. Am einfachsten zu realisieren, wäre hierbei wohl eine Ausweitung
+der Blacklist durch genaueres Analysieren der zweiten Iteration und
+einer Erhöhung der zu findenden Ergebnisse, um eine Regel als korrekt
+erlernt zu klassifizieren. So könnten z.B. die bisher festen unteren 
+Schranken dynamisch an die gefundenen Regeln angepasst werden und nur
+einen bestimmten Prozentsatz der besten Regeln weiter zu verwenden.
+Ebenfalls zur Verbesserung der Ergebnisse bzw. zu einer Erweiterung
+der Lernmöglichkeiten würde beitragen, nicht nur die Wörter zwischen
+Hyperonym und Hypernym zu betrachten, sondern auch Wörter, welche
+vor und nach den entsprechenden Signalwörtern in die Regeln,
+einzubeziehen, da diese durchaus relevant für den Satzinhalt bzw.
+die grammatikalischen Zusammenhänge sein kann. 
+
+
